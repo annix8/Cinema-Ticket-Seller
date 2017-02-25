@@ -1,0 +1,14 @@
+E:\Diploma Project\CinemaTicketsProject\CinemaTickets.DataModel\bin\Debug\CinemaTickets.DataModel.dll.config
+E:\Diploma Project\CinemaTicketsProject\CinemaTickets.DataModel\bin\Debug\CinemaTickets.DataModel.dll
+E:\Diploma Project\CinemaTicketsProject\CinemaTickets.DataModel\bin\Debug\CinemaTickets.DataModel.pdb
+E:\Diploma Project\CinemaTicketsProject\CinemaTickets.DataModel\bin\Debug\EntityFramework.dll
+E:\Diploma Project\CinemaTicketsProject\CinemaTickets.DataModel\bin\Debug\EntityFramework.SqlServer.dll
+E:\Diploma Project\CinemaTicketsProject\CinemaTickets.DataModel\bin\Debug\EntityFramework.xml
+E:\Diploma Project\CinemaTicketsProject\CinemaTickets.DataModel\bin\Debug\EntityFramework.SqlServer.xml
+E:\Diploma Project\CinemaTicketsProject\CinemaTickets.DataModel\obj\Debug\CinemaTickets.DataModel.dll
+E:\Diploma Project\CinemaTicketsProject\CinemaTickets.DataModel\obj\Debug\CinemaTickets.DataModel.pdb
+E:\Diploma Project\CinemaTicketsProject\CinemaTickets.DataModel\obj\Debug\CinemaTickets.DataModel.Migrations.Initial.resources
+E:\Diploma Project\CinemaTicketsProject\CinemaTickets.DataModel\obj\Debug\CinemaTickets.DataModel.csproj.GenerateResource.Cache
+E:\Diploma Project\CinemaTicketsProject\CinemaTickets.DataModel\obj\Debug\CinemaTickets.DataModel.Migrations.AddedMiddleNameToEmployee.resources
+E:\Diploma Project\CinemaTicketsProject\CinemaTickets.DataModel\obj\Debug\CinemaTickets.DataModel.csprojResolveAssemblyReference.cache
+E:\Diploma Project\CinemaTicketsProject\CinemaTickets.DataModel\obj\Debug\CinemaTickets.DataModel.Migrations.AddHallNumberAndEmployeeEmail.resources
