@@ -12,9 +12,6 @@ namespace CinemaTickets.Web.Controllers
     {
         public ActionResult Index()
         {
-            //temporary here...it takes the email of the logged in user
-            //TODO: connect this to the employees table in db
-            var username = HttpContext.User.Identity.Name;
             return View();
         }
 
