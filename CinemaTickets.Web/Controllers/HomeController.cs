@@ -15,9 +15,6 @@ namespace CinemaTickets.Web.Controllers
             //temporary here...it takes the email of the logged in user
             //TODO: connect this to the employees table in db
             var username = HttpContext.User.Identity.Name;
-
-            var context = new CinemaTicketsDbContext();
-            context.Database.Initialize(true);
             return View();
         }
 
