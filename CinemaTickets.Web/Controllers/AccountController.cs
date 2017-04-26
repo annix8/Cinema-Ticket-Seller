@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using CinemaTickets.Web.Models;
+using CinemaTickets.DataModel;
+using CinemaTickets.DataModel.Models;
 
 namespace CinemaTickets.Web.Controllers
 {
@@ -156,7 +158,11 @@ namespace CinemaTickets.Web.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    using(var context = new CinemaTicketsDbContext())
+                    {
+                        context.Employees.Add(new Employee { FirstName = model.FirstName, LastName = model.LastName, Email = model.Email });
+                        context.SaveChanges();
+                    }
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
