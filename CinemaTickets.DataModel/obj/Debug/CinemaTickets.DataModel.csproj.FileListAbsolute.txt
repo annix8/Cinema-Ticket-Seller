@@ -12,3 +12,17 @@ E:\Diploma Project\CinemaTicketsProject\CinemaTickets.DataModel\obj\Debug\Cinema
 E:\Diploma Project\CinemaTicketsProject\CinemaTickets.DataModel\obj\Debug\CinemaTickets.DataModel.Migrations.AddedMiddleNameToEmployee.resources
 E:\Diploma Project\CinemaTicketsProject\CinemaTickets.DataModel\obj\Debug\CinemaTickets.DataModel.csprojResolveAssemblyReference.cache
 E:\Diploma Project\CinemaTicketsProject\CinemaTickets.DataModel\obj\Debug\CinemaTickets.DataModel.Migrations.AddHallNumberAndEmployeeEmail.resources
+C:\Users\mario.yordanov\Desktop\website\CinemaTicketSeller\CinemaTickets.DataModel\bin\Debug\CinemaTickets.DataModel.dll.config
+C:\Users\mario.yordanov\Desktop\website\CinemaTicketSeller\CinemaTickets.DataModel\bin\Debug\CinemaTickets.DataModel.dll
+C:\Users\mario.yordanov\Desktop\website\CinemaTicketSeller\CinemaTickets.DataModel\bin\Debug\CinemaTickets.DataModel.pdb
+C:\Users\mario.yordanov\Desktop\website\CinemaTicketSeller\CinemaTickets.DataModel\bin\Debug\EntityFramework.dll
+C:\Users\mario.yordanov\Desktop\website\CinemaTicketSeller\CinemaTickets.DataModel\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\mario.yordanov\Desktop\website\CinemaTicketSeller\CinemaTickets.DataModel\bin\Debug\EntityFramework.xml
+C:\Users\mario.yordanov\Desktop\website\CinemaTicketSeller\CinemaTickets.DataModel\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\mario.yordanov\Desktop\website\CinemaTicketSeller\CinemaTickets.DataModel\obj\Debug\CinemaTickets.DataModel.Migrations.Initial.resources
+C:\Users\mario.yordanov\Desktop\website\CinemaTicketSeller\CinemaTickets.DataModel\obj\Debug\CinemaTickets.DataModel.Migrations.AddHallNumberAndEmployeeEmail.resources
+C:\Users\mario.yordanov\Desktop\website\CinemaTicketSeller\CinemaTickets.DataModel\obj\Debug\CinemaTickets.DataModel.csproj.GenerateResource.Cache
+C:\Users\mario.yordanov\Desktop\website\CinemaTicketSeller\CinemaTickets.DataModel\obj\Debug\CinemaTickets.DataModel.dll
+C:\Users\mario.yordanov\Desktop\website\CinemaTicketSeller\CinemaTickets.DataModel\obj\Debug\CinemaTickets.DataModel.pdb
+C:\Users\mario.yordanov\Desktop\website\CinemaTicketSeller\CinemaTickets.DataModel\obj\Debug\CinemaTickets.DataModel.Migrations.AddedNewPropertiesToMovieEntity.resources
+C:\Users\mario.yordanov\Desktop\website\CinemaTicketSeller\CinemaTickets.DataModel\obj\Debug\CinemaTickets.DataModel.Migrations.MovieEntityPropertiesExtended.resources

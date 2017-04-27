@@ -1,4 +1,7 @@
-﻿using System;
+﻿using CinemaTickets.Services;
+using CinemaTickets.Services.Services;
+using CinemaTickets.Web.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +11,11 @@ namespace CinemaTickets.Web.Controllers
 {
     public class MovieController : Controller
     {
+        private IMovieService _movieService;
+        public MovieController()
+        {
+            this._movieService = new MovieService();
+        }
         // GET: Movie
         public ActionResult Index()
         {
@@ -18,7 +26,20 @@ namespace CinemaTickets.Web.Controllers
                 return RedirectToAction("Login", "Account");
             }
 
-            return View();
+            var movies = this._movieService.GetAllMovies().ToList();
+
+            var model = new MoviesViewModel()
+            {
+                Movies = movies
+            };
+
+            return View(model);
+        }
+
+        public ActionResult MovieDetails(int id)
+        {
+            var movieFromDb = this._movieService.GetMovieById(id);
+            return View(movieFromDb);
         }
     }
 }

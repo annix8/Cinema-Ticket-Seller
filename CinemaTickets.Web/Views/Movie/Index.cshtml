@@ -1,7 +1,16 @@
-﻿
+﻿@model CinemaTickets.Web.ViewModels.MoviesViewModel
+
 @{
     ViewBag.Title = "Movies";
 }
 
-<h2>Index</h2>
+@foreach (var item in Model.Movies)
+{
+    if(Model.Movies.Count == 0)
+    {
+        <h3>There are no movies in the database!</h3>
+        break;
+    }
+    <p><a href="@Url.Action("MovieDetails","Movie", new { id = @item.MovieID })">@item.Title</a> - @item.Rating - @item.Language - @item.Minutes</p>
+}
 

@@ -10,5 +10,10 @@ namespace CinemaTickets.DataModel.Models
     {
         public int MovieID { get; set; }
         public string Title { get; set; }
+        public string Rating { get; set; }
+        public string Language { get; set; }
+        public int Minutes { get; set; }
+        public string Producer { get; set; }
+        public string Description { get; set; }
     }
 }
