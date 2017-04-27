@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "Movie Panel";
+}
+
+@if (!Model.IsAdmin)
+{
+    <h2>You don't have privileges to be here!</h2>
+    return;
+}
+
+<h2>MoviePanel</h2>
+

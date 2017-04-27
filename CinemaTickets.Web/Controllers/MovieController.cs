@@ -12,15 +12,16 @@ namespace CinemaTickets.Web.Controllers
     public class MovieController : Controller
     {
         private IMovieService _movieService;
+        private IEmployeeService _employeeService;
+        public string username { get { return HttpContext.User.Identity.Name; } set { } }
         public MovieController()
         {
             this._movieService = new MovieService();
+            this._employeeService = new EmployeeService();
         }
         // GET: Movie
         public ActionResult Index()
         {
-            var username = HttpContext.User.Identity.Name;
-
             if (username == "")
             {
                 return RedirectToAction("Login", "Account");
@@ -39,7 +40,14 @@ namespace CinemaTickets.Web.Controllers
         public ActionResult MovieDetails(int id)
         {
             var movieFromDb = this._movieService.GetMovieById(id);
+            ViewBag.MovieTitle = movieFromDb.Title;
             return View(movieFromDb);
+        }
+
+        public ActionResult MoviePanel()
+        {
+            var userFromDb = this._employeeService.GetEmployeeByEmail(username);
+            return View(userFromDb);
         }
     }
 }

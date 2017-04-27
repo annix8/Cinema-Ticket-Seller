@@ -66,6 +66,14 @@
     <Compile Include="Migrations\201704271422547_MovieEntityPropertiesExtended.Designer.cs">
       <DependentUpon>201704271422547_MovieEntityPropertiesExtended.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704271917266_AddedGenreToMovieTable.cs" />
+    <Compile Include="Migrations\201704271917266_AddedGenreToMovieTable.Designer.cs">
+      <DependentUpon>201704271917266_AddedGenreToMovieTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704272003423_AddedIsAdminPropertyToEmployeeTable.cs" />
+    <Compile Include="Migrations\201704272003423_AddedIsAdminPropertyToEmployeeTable.Designer.cs">
+      <DependentUpon>201704272003423_AddedIsAdminPropertyToEmployeeTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Hall.cs" />
@@ -92,6 +100,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704271422547_MovieEntityPropertiesExtended.resx">
       <DependentUpon>201704271422547_MovieEntityPropertiesExtended.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704271917266_AddedGenreToMovieTable.resx">
+      <DependentUpon>201704271917266_AddedGenreToMovieTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704272003423_AddedIsAdminPropertyToEmployeeTable.resx">
+      <DependentUpon>201704272003423_AddedIsAdminPropertyToEmployeeTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

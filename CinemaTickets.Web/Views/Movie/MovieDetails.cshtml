@@ -1,9 +1,13 @@
-﻿@Model 
+﻿
 @{
-    ViewBag.Title = "MovieDetails";
+    ViewBag.Title = ViewBag.MovieTitle;
 }
 
-<h2>MovieDetails</h2>
+<h2>@ViewBag.MovieTitle</h2>
+<hr />
 
-<p>@Model.Title</p>
+<p>Genre: @Model.Genre</p>
+<p>Minutes: @Model.Minutes</p>
+<p>Language: @Model.Language</p>
+<p>Description: @Model.Description</p>
 
