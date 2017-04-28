@@ -23,7 +23,7 @@ namespace CinemaTickets.Web.Controllers
         // GET: Movie
         public ActionResult Index()
         {
-            if (username == "")
+            if (!CheckLoggedInUser())
             {
                 return RedirectToAction("Login", "Account");
             }
@@ -47,14 +47,37 @@ namespace CinemaTickets.Web.Controllers
 
         public ActionResult MoviePanel()
         {
+            if (!CheckLoggedInUser())
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
             var userFromDb = this._employeeService.GetEmployeeByEmail(username);
             return View(userFromDb);
         }
-
-        //TODO: add logic for inserting movie into db
+        
         public ActionResult AddMovie()
         {
-            return View(new Movie() {Title = "asdasdsads" });
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AddMovie(Movie movie)
+        {
+            this._movieService.AddMovie(movie);
+            return Json(new
+            {
+                status = "success",
+                result = "Done"
+            });
+        }
+
+        private bool CheckLoggedInUser()
+        {
+            if (username == "")
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

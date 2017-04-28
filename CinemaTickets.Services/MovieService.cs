@@ -19,6 +19,7 @@ namespace CinemaTickets.Services
         public void AddMovie(Movie movie)
         {
             this._context.Movies.Add(movie);
+            this._context.SaveChanges();
         }
 
         public IQueryable<Movie> GetAllMovies()

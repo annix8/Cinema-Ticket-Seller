@@ -5,4 +5,47 @@
 
 <h2>AddMovie</h2>
 
-<p>@Model.Title</p>
+<form id="addMovieForm">
+
+    <p>Title:</p>  <input type="text" id="title" />
+    <p>Rating:</p>    <input type="text" id="rating" />
+    <p>Language:</p>    <input type="text" id="language" />
+    <p>Minutes:</p>    <input type="text" id="minutes" />
+    <p>Producer:</p>    <input type="text" id="producer" />
+    <p>Description:</p>    <input type="text" id="description" />
+    <p>Genre:</p>    <input type="text" id="genre" />
+    <button id="addMovieButton">Add movie</button>
+</form>
+
+@section Scripts {
+    <script>
+        $("#addMovieButton").click(function (e) {
+            e.preventDefault();
+            var data = {
+                Title: $('#title').val(),
+                Rating: $('#rating').val(),
+                Language: $('#language').val(),
+                Minutes: $('#minutes').val(),
+                Producer: $('#producer').val(),
+                Description: $('#description').val(),
+                Genre: $('#genre').val(),
+            };
+
+            $.ajax({
+                url: "@Url.Action("AddMovie","Movie")",
+                type: 'POST',
+                cache: false,
+                data: data,
+                success: successCallback,
+                error: errorCallback
+            })
+        })
+
+        function errorCallback() {
+            $("input:text").val('');
+        }
+        function successCallback() {
+            $("input:text").val('');
+        }
+    </script>
+}
