@@ -1,4 +1,5 @@
-﻿using CinemaTickets.Services;
+﻿using CinemaTickets.DataModel.Models;
+using CinemaTickets.Services;
 using CinemaTickets.Services.Services;
 using CinemaTickets.Web.ViewModels;
 using System;
@@ -48,6 +49,12 @@ namespace CinemaTickets.Web.Controllers
         {
             var userFromDb = this._employeeService.GetEmployeeByEmail(username);
             return View(userFromDb);
+        }
+
+        //TODO: add logic for inserting movie into db
+        public ActionResult AddMovie()
+        {
+            return View(new Movie() {Title = "asdasdsads" });
         }
     }
 }
