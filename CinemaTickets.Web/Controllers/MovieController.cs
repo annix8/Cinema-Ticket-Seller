@@ -55,7 +55,7 @@ namespace CinemaTickets.Web.Controllers
             var userFromDb = this._employeeService.GetEmployeeByEmail(username);
             return View(userFromDb);
         }
-        
+
         public ActionResult AddMovie()
         {
             return View();
@@ -63,12 +63,20 @@ namespace CinemaTickets.Web.Controllers
         [HttpPost]
         public ActionResult AddMovie(Movie movie)
         {
-            this._movieService.AddMovie(movie);
-            return Json(new
+            try
             {
-                status = "success",
-                result = "Done"
-            });
+                if(movie.Minutes == 0)
+                {
+                    return new HttpStatusCodeResult(400, "Bad request");
+
+                }
+                this._movieService.AddMovie(movie);
+            }
+            catch (Exception e)
+            {
+                return new HttpStatusCodeResult(400, "Bad request");
+            }
+            return new HttpStatusCodeResult(200,"OK");
         }
 
         private bool CheckLoggedInUser()
