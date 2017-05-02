@@ -1,5 +1,9 @@
 ﻿
 @{
+    if(ViewBag.Title == "")
+    {
+        <h2>Error! 404 Not found!</h2>
+    }
     ViewBag.Title = ViewBag.MovieTitle;
 }
 

@@ -44,6 +44,10 @@ namespace CinemaTickets.Web.Controllers
         public ActionResult MovieDetails(int id)
         {
             var movieFromDb = this._movieService.GetMovieById(id);
+            if(movieFromDb == null)
+            {
+                return View("Error");
+            }
             ViewBag.MovieTitle = movieFromDb.Title;
 
             return View(movieFromDb);
