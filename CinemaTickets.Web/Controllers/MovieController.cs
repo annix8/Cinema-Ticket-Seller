@@ -71,7 +71,7 @@ namespace CinemaTickets.Web.Controllers
             {
                 using (var binaryReader = new BinaryReader(Request.Files["files"].InputStream))
                 {
-                    var Imagefile = binaryReader.ReadBytes(Request.Files["files"].ContentLength);//your image
+                    var Imagefile = binaryReader.ReadBytes(Request.Files["files"].ContentLength);
                     var image = new Image
                     {
                         ImageData = Imagefile

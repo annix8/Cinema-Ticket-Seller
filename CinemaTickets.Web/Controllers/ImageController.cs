@@ -18,7 +18,7 @@ namespace CinemaTickets.Web.Controllers
             this._imageService = new ImageService();
         }
         // GET: Image
-        public async Task<ActionResult> RenderImage(int id)
+        public ActionResult RenderImage(int id)
         {
             Image image =  this._imageService.GetImage(id);
 

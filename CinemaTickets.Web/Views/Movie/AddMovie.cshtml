@@ -23,6 +23,13 @@
         $("#addMovieButton").click(function (e) {
             e.preventDefault();
             var file = document.getElementById('files').files[0];
+            var filenameExtension = file.name.split('.').pop();
+            var allowedPictureFormats = ['jpeg','gif','bmp','png','jpg'];
+
+            if (!allowedPictureFormats.includes(filenameExtension)) {
+                alert("Invalid file format: " + filenameExtension)
+                return;
+            }
             var fd = new FormData();
 
             fd.append("files", file);
@@ -33,10 +40,6 @@
             fd.append("producer", $('#producer').val());
             fd.append("description", $('#description').val());
             fd.append("genre", $('#genre').val());
-
-            //var xhr = new XMLHttpRequest();
-            //xhr.open("POST", "/Movie/AddMovie", false);
-            //xhr.send(fd);
 
             $.ajax({
                 url: "@Url.Action("AddMovie","Movie")",
