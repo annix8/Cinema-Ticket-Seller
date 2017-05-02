@@ -16,6 +16,7 @@ namespace CinemaTickets.DataModel.Models
         public string Producer { get; set; }
         public string Description { get; set; }
         public string Genre { get; set; }
-        public byte[] MovieImage { get; set; }
+        public int ImageID { get; set; }
+        public virtual Image Image { get; set; }
     }
 }

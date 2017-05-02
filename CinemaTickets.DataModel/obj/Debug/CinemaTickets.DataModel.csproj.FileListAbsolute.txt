@@ -46,4 +46,4 @@ C:\Users\Mario\Desktop\website\CinemaTicketSeller\CinemaTickets.DataModel\obj\De
 C:\Users\mario.yordanov\Desktop\website\CinemaTicketSeller\CinemaTickets.DataModel\obj\Debug\CinemaTickets.DataModel.csprojResolveAssemblyReference.cache
 C:\Users\mario.yordanov\Desktop\website\CinemaTicketSeller\CinemaTickets.DataModel\obj\Debug\CinemaTickets.DataModel.Migrations.AddedGenreToMovieTable.resources
 C:\Users\mario.yordanov\Desktop\website\CinemaTicketSeller\CinemaTickets.DataModel\obj\Debug\CinemaTickets.DataModel.Migrations.AddedIsAdminPropertyToEmployeeTable.resources
-C:\Users\mario.yordanov\Desktop\website\CinemaTicketSeller\CinemaTickets.DataModel\obj\Debug\CinemaTickets.DataModel.Migrations.AddedImagePropertyToMovieTable.resources
+C:\Users\mario.yordanov\Desktop\website\CinemaTicketSeller\CinemaTickets.DataModel\obj\Debug\CinemaTickets.DataModel.Migrations.AddedImageTableAndImageIDPropertyToMovieTable.resources

@@ -74,13 +74,14 @@
     <Compile Include="Migrations\201704272003423_AddedIsAdminPropertyToEmployeeTable.Designer.cs">
       <DependentUpon>201704272003423_AddedIsAdminPropertyToEmployeeTable.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201705020654490_AddedImagePropertyToMovieTable.cs" />
-    <Compile Include="Migrations\201705020654490_AddedImagePropertyToMovieTable.Designer.cs">
-      <DependentUpon>201705020654490_AddedImagePropertyToMovieTable.cs</DependentUpon>
+    <Compile Include="Migrations\201705020846212_AddedImageTableAndImageIDPropertyToMovieTable.cs" />
+    <Compile Include="Migrations\201705020846212_AddedImageTableAndImageIDPropertyToMovieTable.Designer.cs">
+      <DependentUpon>201705020846212_AddedImageTableAndImageIDPropertyToMovieTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Hall.cs" />
+    <Compile Include="Models\Image.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\Projection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -111,8 +112,8 @@
     <EmbeddedResource Include="Migrations\201704272003423_AddedIsAdminPropertyToEmployeeTable.resx">
       <DependentUpon>201704272003423_AddedIsAdminPropertyToEmployeeTable.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705020654490_AddedImagePropertyToMovieTable.resx">
-      <DependentUpon>201705020654490_AddedImagePropertyToMovieTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201705020846212_AddedImageTableAndImageIDPropertyToMovieTable.resx">
+      <DependentUpon>201705020846212_AddedImageTableAndImageIDPropertyToMovieTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

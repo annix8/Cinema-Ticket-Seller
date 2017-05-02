@@ -19,5 +19,6 @@ namespace CinemaTickets.DataModel
         public DbSet<Movie> Movies { get; set; }
         public DbSet<Projection> Projections { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
+        public DbSet<Image> Images { get; set; }
     }
 }
