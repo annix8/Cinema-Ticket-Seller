@@ -21,19 +21,12 @@
             <input id="files" type="file">
             <i class="fa_icon icon-upload-alt margin-correction"></i>Upload picture
         </label>
-    <span id="fileName"></span>
     </span><br />
         <button id="addMovieButton" class="btn btn-primary" style="margin-top:20px">Add movie</button>
 </form>
 
 @section Scripts {
     <script>
-        $('#files').change(function () {
-            var file = document.getElementById('files').files[0];
-            $('#fileName').css('display', 'inline-block');
-            $('#fileName').empty();
-            $('#fileName').append(file.name);
-        });
 
         $("#addMovieButton").click(function (e) {
             e.preventDefault();
@@ -78,6 +71,9 @@
             function successCallback() {
                 alert("success");
                 $("input:text").val('');
+                $("#description").val('');
+                $('#files').val('');
+                $('#fileName').val('');
             }
     </script>
 }
