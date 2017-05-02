@@ -11,4 +11,6 @@
 <p>Language: @Model.Language</p>
 <p>Description: @Model.Description</p>
 
-<img src="@Url.Action("RenderImage","Image", new { id = Model.ImageID})" width="500" height="500"/>
+<img src="@Url.Action("RenderImage","Image", new { id = Model.ImageID})" width="500" height="500"/><br>
+
+<button class="btn btn-primary" onclick="window.location='@Request.UrlReferrer.AbsoluteUri'">Back</button>
