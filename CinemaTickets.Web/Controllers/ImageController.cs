@@ -22,9 +22,9 @@ namespace CinemaTickets.Web.Controllers
         {
             Image image =  this._imageService.GetImage(id);
 
-            byte[] photoBack = image.ImageData;
+            byte[] imageInBinary = image.ImageData;
 
-            return File(photoBack, "image/png");
+            return File(imageInBinary, "image/png");
         }
     }
 }
