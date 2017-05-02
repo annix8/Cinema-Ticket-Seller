@@ -3,7 +3,8 @@
     ViewBag.Title = "Add movie";
 }
 
-<h2>AddMovie</h2>
+<h2>Add movie to database</h2>
+<hr/>
 
 <form id="addMovieForm">
 
@@ -12,17 +13,36 @@
     <p>Language:</p>    <input type="text" id="language" />
     <p>Minutes:</p>    <input type="text" id="minutes" />
     <p>Producer:</p>    <input type="text" id="producer" />
-    <p>Description:</p>    <input type="text" id="description" />
-    <p>Genre:</p>    <input type="text" id="genre" />
-    <input type="file" name="photo" id="files">
-    <button id="addMovieButton">Add movie</button>
+    <p>Description:</p>    <textarea type="text" id="description" style="width:100%;height:250px;"></textarea>
+    <p>Genre:</p>    <input type="text" id="genre" style="margin-bottom:20px;"/>
+    <br />
+    <span id="fileselector">
+        <label class="btn btn-default" for="files">
+            <input id="files" type="file">
+            <i class="fa_icon icon-upload-alt margin-correction"></i>Upload picture
+        </label>
+    <span id="fileName"></span>
+    </span><br />
+        <button id="addMovieButton" class="btn btn-primary" style="margin-top:20px">Add movie</button>
 </form>
 
 @section Scripts {
     <script>
+        $('#files').change(function () {
+            var file = document.getElementById('files').files[0];
+            $('#fileName').css('display', 'inline-block');
+            $('#fileName').empty();
+            $('#fileName').append(file.name);
+        });
+
         $("#addMovieButton").click(function (e) {
             e.preventDefault();
             var file = document.getElementById('files').files[0];
+            if (file == undefined) {
+                alert("You must select a picture for the movie!");
+                return;
+            }
+
             var filenameExtension = file.name.split('.').pop();
             var allowedPictureFormats = ['jpeg','gif','bmp','png','jpg'];
 
@@ -52,12 +72,12 @@
             })
         })
 
-        function errorCallback() {
-            alert("error");
-        }
-        function successCallback() {
-            alert("success");
-            $("input:text").val('');
-        }
+            function errorCallback() {
+                alert("error");
+            }
+            function successCallback() {
+                alert("success");
+                $("input:text").val('');
+            }
     </script>
 }
