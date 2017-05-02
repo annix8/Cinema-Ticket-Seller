@@ -4,6 +4,7 @@ using CinemaTickets.Services.Services;
 using CinemaTickets.Web.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -14,11 +15,13 @@ namespace CinemaTickets.Web.Controllers
     {
         private IMovieService _movieService;
         private IEmployeeService _employeeService;
+        private IImageService _imageService;
         public string username { get { return HttpContext.User.Identity.Name; } set { } }
         public MovieController()
         {
             this._movieService = new MovieService();
             this._employeeService = new EmployeeService();
+            this._imageService = new ImageService();
         }
         // GET: Movie
         public ActionResult Index()
@@ -42,6 +45,7 @@ namespace CinemaTickets.Web.Controllers
         {
             var movieFromDb = this._movieService.GetMovieById(id);
             ViewBag.MovieTitle = movieFromDb.Title;
+
             return View(movieFromDb);
         }
 
@@ -61,22 +65,36 @@ namespace CinemaTickets.Web.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult AddMovie(Movie movie)
+        public ActionResult AddMovie(FormCollection data)
         {
-            try
+            if (Request.Files["files"] != null)
             {
-                if(movie.Minutes == 0)
+                using (var binaryReader = new BinaryReader(Request.Files["files"].InputStream))
                 {
-                    return new HttpStatusCodeResult(400, "Bad request");
+                    var Imagefile = binaryReader.ReadBytes(Request.Files["files"].ContentLength);//your image
+                    var image = new Image
+                    {
+                        ImageData = Imagefile
+                    };
+                    this._imageService.AddImage(image);
 
+                    var movie = new Movie
+                    {
+                        Description = data["description"],
+                        Genre = data["genre"],
+                        Language = data["language"],
+                        Minutes = int.Parse(data["minutes"]),
+                        Producer = data["producer"],
+                        Rating = data["rating"],
+                        Title = data["title"],
+                        ImageID = image.ImageID
+                    };
+
+                    this._movieService.AddMovie(movie);
                 }
-                this._movieService.AddMovie(movie);
+                return new HttpStatusCodeResult(200, "OK");
             }
-            catch (Exception e)
-            {
-                return new HttpStatusCodeResult(400, "Bad request");
-            }
-            return new HttpStatusCodeResult(200,"OK");
+            return new HttpStatusCodeResult(400, "Bad request");
         }
 
         private bool CheckLoggedInUser()

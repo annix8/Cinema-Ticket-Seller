@@ -67,9 +67,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EmployeeService.cs" />
+    <Compile Include="ImageService.cs" />
     <Compile Include="MovieService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IEmployeeService.cs" />
+    <Compile Include="Services\IImageService.cs" />
     <Compile Include="Services\IMovieService.cs" />
   </ItemGroup>
   <ItemGroup>

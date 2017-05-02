@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "AddMovie";
+    ViewBag.Title = "Add movie";
 }
 
 <h2>AddMovie</h2>
@@ -14,6 +14,7 @@
     <p>Producer:</p>    <input type="text" id="producer" />
     <p>Description:</p>    <input type="text" id="description" />
     <p>Genre:</p>    <input type="text" id="genre" />
+    <input type="file" name="photo" id="files">
     <button id="addMovieButton">Add movie</button>
 </form>
 
@@ -21,21 +22,28 @@
     <script>
         $("#addMovieButton").click(function (e) {
             e.preventDefault();
-            var data = {
-                Title: $('#title').val(),
-                Rating: $('#rating').val(),
-                Language: $('#language').val(),
-                Minutes: $('#minutes').val(),
-                Producer: $('#producer').val(),
-                Description: $('#description').val(),
-                Genre: $('#genre').val(),
-            };
+            var file = document.getElementById('files').files[0];
+            var fd = new FormData();
+
+            fd.append("files", file);
+            fd.append("title", $('#title').val());
+            fd.append("rating", $('#rating').val());
+            fd.append("language", $('#language').val());
+            fd.append("minutes", $('#minutes').val());
+            fd.append("producer", $('#producer').val());
+            fd.append("description", $('#description').val());
+            fd.append("genre", $('#genre').val());
+
+            //var xhr = new XMLHttpRequest();
+            //xhr.open("POST", "/Movie/AddMovie", false);
+            //xhr.send(fd);
 
             $.ajax({
                 url: "@Url.Action("AddMovie","Movie")",
                 type: 'POST',
-                cache: false,
-                data: data,
+                processData: false,
+                contentType: false,
+                data: fd,
                 success: successCallback,
                 error: errorCallback
             })
