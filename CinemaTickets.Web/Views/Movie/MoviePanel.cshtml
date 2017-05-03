@@ -6,13 +6,13 @@
 @if (!Model.IsAdmin)
 {
     <h2>You don't have privileges to be here!</h2>
-    <hr />
     return;
 }
 
 <h2>Manage movies panel</h2>
 <hr />
-
+<h4>This is a page only for administrators! It gives you the ability to add/delete movies or create projections.
+    If any problems arise, please contact the support for help.</h4>
     <p><a href="@Url.Action("AddMovie","Movie")" class="btn btn-primary btn-lg">Add movie to database &raquo;</a></p>
     <p><a class="btn btn-primary btn-lg">Remove movie from database &raquo;</a></p>
 
