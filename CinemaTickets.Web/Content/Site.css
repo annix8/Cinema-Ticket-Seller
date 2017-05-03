@@ -24,7 +24,7 @@ select,
 textarea {
     max-width: 280px;
 }
-table th {
+/*table th {
 background: #DDD;
 padding: 10px;
 }
@@ -32,7 +32,7 @@ padding: 10px;
 table td {
 padding: 5px 10px;
 background: #EEE;
-}
+}*/
 #fileselector {
     margin-top: 10px; 
     margin-bottom:10px;

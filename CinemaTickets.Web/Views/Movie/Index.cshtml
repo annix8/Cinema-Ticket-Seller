@@ -8,20 +8,26 @@
     <h3>There are no movies in the database!</h3>
     return;
 }
-    <table id="movies-table">
+
+<table class="table table-bordered" style="margin-top:15px;">
+    <thead>
         <tr>
             <th>Movie Title</th>
             <th>Rating</th>
             <th>Language</th>
             <th>Minutes</th>
         </tr>
-@foreach (var item in Model.Movies)
-{
-        <tr>
-        <td><a href="@Url.Action("MovieDetails","Movie", new { id = @item.MovieID })">@item.Title</a></td>
-            <td>@item.Rating</td>
-            <td>@item.Language</td>
-            <td>@item.Minutes</td>
-        </tr>
-}
-    </table>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Movies)
+        {
+            <tr>
+                <td><a href="@Url.Action("MovieDetails","Movie", new { id = @item.MovieID })">@item.Title</a></td>
+                <td>@item.Rating</td>
+                <td>@item.Language</td>
+                <td>@item.Minutes</td>
+            </tr>
+        }
+
+    </tbody>
+</table>
