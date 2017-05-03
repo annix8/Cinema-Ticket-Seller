@@ -3,6 +3,10 @@
     ViewBag.Title = "Purchase tickets";
 }
 
-<h2>Projection View</h2>
+<h2>Choose projection for: @ViewBag.MovieTitle</h2>
+<hr />
 
-@Model.Title
+@if(Model.Count == 0)
+{
+    <h3>There are no projections for this movie available.</h3>
+}

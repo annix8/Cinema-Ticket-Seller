@@ -1,4 +1,6 @@
 ﻿using CinemaTickets.DataModel.Models;
+using CinemaTickets.Services;
+using CinemaTickets.Services.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +11,17 @@ namespace CinemaTickets.Web.Controllers
 {
     public class ProjectionController : Controller
     {
+        private IProjectionService _projectionService;
+        public ProjectionController()
+        {
+            this._projectionService = new ProjectionService();
+        }
+
         public ActionResult Index(Movie movie)
         {
-            return View(movie);
+            var projectionForSelectedMovie = this._projectionService.GetProjectionsByMovie(movie.MovieID).ToList();
+            ViewBag.MovieTitle = movie.Title;
+            return View(projectionForSelectedMovie);
         }
     }
 }
