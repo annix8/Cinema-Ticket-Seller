@@ -10,8 +10,5 @@ namespace CinemaTickets.DataModel.Models
     {
         public int HallID { get; set; }
         public int HallNumber { get; set; }
-        public int RowNumber { get; set; }
-        public int SeatNumber { get; set; }
-
     }
 }
