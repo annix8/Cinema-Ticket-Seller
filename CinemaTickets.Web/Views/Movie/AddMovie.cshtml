@@ -2,68 +2,58 @@
 @{
     ViewBag.Title = "Add movie";
 }
-
 <h2>Add movie to database</h2>
-<hr/>
-
-@*<form id="addMovieForm">
-
-    <p>Title:</p>  <input type="text" id="title" />
-    <p>Rating:</p>    <input type="text" id="rating" />
-    <p>Language:</p>    <input type="text" id="language" />
-    <p>Minutes:</p>    <input type="text" id="minutes" />
-    <p>Producer:</p>    <input type="text" id="producer" />
-    <p>Description:</p>    <textarea type="text" id="description" style="width:100%;height:250px;"></textarea>
-    <p>Genre:</p>    <input type="text" id="genre" style="margin-bottom:20px;"/>
-    <input id="files" type="file" name="photo">
-    <br />
-        <button id="addMovieButton" class="btn btn-primary" style="margin-top:20px">Add movie</button>
-</form>*@
-
-
+<hr />
 <form>
-    <div class="form-group">
-        <label for="title">Title</label>
-        <input type="text" class="form-control" id="title" aria-describedby="titleHelp" placeholder="Title">
-    </div>
-    <div class="form-group">
-        <label for="rating">Rating</label>
-        <input type="text" class="form-control" id="rating" placeholder="Rating">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" id="title" aria-describedby="titleHelp" placeholder="Title">
+            </div>
+            <div class="form-group">
+                <label for="rating">Rating</label>
+                <input type="text" class="form-control" id="rating" placeholder="Rating">
+            </div>
+
+            <div class="form-group">
+                <label for="language">Language</label>
+                <input type="text" class="form-control" id="language" placeholder="Language">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="minutes">Minutes</label>
+                <input type="number" class="form-control" id="minutes" placeholder="Minutes">
+            </div>
+
+            <div class="form-group">
+                <label for="producer">Producer</label>
+                <input type="text" class="form-control" id="producer" placeholder="Producer">
+            </div>
+
+            <div class="form-group">
+                <label for="genre">Genre</label>
+                <input type="text" class="form-control" id="genre" placeholder="Genre">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea class="form-control" id="description" rows="9"></textarea>
+            </div>
+        </div>
     </div>
 
-    <div class="form-group">
-        <label for="language">Language</label>
-        <input type="text" class="form-control" id="language" placeholder="Language">
-    </div>
-
-    <div class="form-group">
-        <label for="minutes">Minutes</label>
-        <input type="number" class="form-control" id="minutes" placeholder="Minutes">
-    </div>
-
-    <div class="form-group">
-        <label for="producer">Producer</label>
-        <input type="text" class="form-control" id="producer" placeholder="Producer">
-    </div>
-
-    <div class="form-group">
-        <label for="genre">Genre</label>
-        <input type="text" class="form-control" id="genre" placeholder="Genre">
-    </div>
    
-    <div class="form-group">
-        <label for="description">Description</label>
-        <textarea class="form-control" id="description" rows="10"></textarea>
-    </div>
-    <div class="form-group">
-        <label for="files">Picture input</label>
-        <input type="file" class="form-control-file" id="files" aria-describedby="fileHelp">
-        <small id="fileHelp" class="form-text text-muted">Select a picture from here</small>
-    </div>
-    
-    <button id="addMovieButton" class="btn btn-primary">Add movie</button>
-</form>
+            <div class="form-group">
+                <label for="files">Picture input</label>
+                <input type="file" class="form-control-file" id="files" aria-describedby="fileHelp">
+                <small id="fileHelp" class="form-text text-muted">Select a picture from here</small>
+            </div>
 
+            <button id="addMovieButton" class="btn btn-primary" style="float:right;margin-top:-50px;">Add movie</button>
+</form>
 @section Scripts {
     <script>
 
@@ -76,7 +66,7 @@
             }
 
             var filenameExtension = file.name.split('.').pop();
-            var allowedPictureFormats = ['jpeg','gif','bmp','png','jpg'];
+            var allowedPictureFormats = ['jpeg', 'gif', 'bmp', 'png', 'jpg'];
 
             if (!allowedPictureFormats.includes(filenameExtension)) {
                 alert("Invalid file format: " + filenameExtension)
@@ -104,14 +94,14 @@
             })
         })
 
-            function errorCallback() {
-                alert("error");
-            }
-            function successCallback() {
-                alert("success");
-                $("input:text").val('');
-                $("#description").val('');
-                $('#files').val('');
-            }
+        function errorCallback() {
+            alert("error");
+        }
+        function successCallback() {
+            alert("success");
+            $("input:text").val('');
+            $("#description").val('');
+            $('#files').val('');
+        }
     </script>
 }
