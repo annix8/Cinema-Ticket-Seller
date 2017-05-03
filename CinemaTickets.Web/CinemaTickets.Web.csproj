@@ -181,6 +181,7 @@
     <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MovieController.cs" />
+    <Compile Include="Controllers\ProjectionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -250,6 +251,7 @@
     <Content Include="Views\Movie\MovieDetails.cshtml" />
     <Content Include="Views\Movie\MoviePanel.cshtml" />
     <Content Include="Views\Movie\AddMovie.cshtml" />
+    <Content Include="Views\Projection\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
