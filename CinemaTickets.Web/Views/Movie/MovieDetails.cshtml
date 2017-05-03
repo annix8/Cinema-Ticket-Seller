@@ -3,14 +3,16 @@
     ViewBag.Title = ViewBag.MovieTitle;
 }
 
-<h2>@ViewBag.MovieTitle</h2>
+<div>
+    <h2>@ViewBag.MovieTitle</h2>
+    <button class="btn-lg btn-primary" onclick="window.location='@Request.UrlReferrer.AbsoluteUri'" style="float:right;margin-top:-50px;">Back</button>
+</div>
 <hr />
 
-<p>Genre: @Model.Genre</p>
-<p>Minutes: @Model.Minutes</p>
-<p>Language: @Model.Language</p>
-<p>Description: @Model.Description</p>
+<p><b>Genre:</b> @Model.Genre</p>
+<p><b>Minutes:</b> @Model.Minutes</p>
+<p><b>Language:</b> @Model.Language</p>
+<p><b>Description:</b> @Model.Description</p>
 
-<img src="@Url.Action("RenderImage","Image", new { id = Model.ImageID})" width="500" height="500"/><br>
+<img src="@Url.Action("RenderImage","Image", new { id = Model.ImageID})" width="700" height="999"/><br>
 
-<button class="btn btn-primary" onclick="window.location='@Request.UrlReferrer.AbsoluteUri'">Back</button>
