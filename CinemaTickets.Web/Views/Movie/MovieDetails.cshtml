@@ -8,10 +8,28 @@
     <button class="btn-lg btn-primary" onclick="window.location='@Request.UrlReferrer.AbsoluteUri'" style="float:right;margin-top:-50px;">Back</button>
 </div>
 <hr />
+<div class="row">
+    <div class="col-md-4">
+        <span>
+            <img src="@Url.Action("RenderImage","Image", new { id = Model.ImageID})" width="350" height="500" />
+        </span>
+    </div>
 
-<p><b>Genre:</b> @Model.Genre</p>
-<p><b>Minutes:</b> @Model.Minutes</p>
-<p><b>Language:</b> @Model.Language</p>
-<p><b>Description:</b> @Model.Description</p>
+    <div class="col-md-8">
+        <p><b>Producer:</b> @Model.Producer</p>
+        <p><b>Genre:</b> @Model.Genre</p>
+        <p><b>Minutes:</b> @Model.Minutes</p>
+        <p><b>Language:</b> @Model.Language</p>
+        <p><b>Rating:</b> @Model.Rating</p>
+        <p><b>Description:</b> @Model.Description</p>
+    </div>
+</div>
 
-<img src="@Url.Action("RenderImage","Image", new { id = Model.ImageID})" width="700" height="999"/>
+<div class="row">
+    <div class="col-md-6" style="margin-top:20px;">&copy; All rights reserved</div>
+    <div class="col-md-6">
+        <button class="btn-lg btn-primary" onclick="window.location='@Request.UrlReferrer.AbsoluteUri'" style="float:right;">Continue to purchase...</button>
+    </div>
+</div>
+
+
