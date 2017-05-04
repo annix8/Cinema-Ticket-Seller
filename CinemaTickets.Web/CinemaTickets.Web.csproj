@@ -252,6 +252,7 @@
     <Content Include="Views\Movie\MoviePanel.cshtml" />
     <Content Include="Views\Movie\AddMovie.cshtml" />
     <Content Include="Views\Projection\Index.cshtml" />
+    <Content Include="Views\Projection\CreateProjection.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
