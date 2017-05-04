@@ -1,6 +1,7 @@
 ﻿using CinemaTickets.DataModel.Models;
 using CinemaTickets.Services;
 using CinemaTickets.Services.Services;
+using CinemaTickets.Web.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +33,13 @@ namespace CinemaTickets.Web.Controllers
         {
             var allMovies = this._movieService.GetAllMovies().ToList();
             var allHalls = this._hallService.GetAllHalls().ToList();
-            return View();
+
+            var model = new HallsMoviesViewModel()
+            {
+                Halls = allHalls,
+                Movies = allMovies
+            };
+            return View(model);
         }
     }
 }
