@@ -12,22 +12,22 @@
     <div class="form-group">
         <label for="hallSelect">Select a hall number</label>
         <select class="form-control" id="hallSelect">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
+            <option selected>Please select a hall...</option>
+            @foreach (var hall in Model.Halls)
+            {
+                <option hallID="@hall.HallID">@hall.HallNumber</option>
+            }
         </select>
     </div>
 
     <div class="form-group">
         <label for="movieSelect">Select a movie</label>
         <select class="form-control" id="movieSelect">
-            <option>Movie 1</option>
-            <option>Movie 2</option>
-            <option>Movie 3</option>
-            <option>Movie 4</option>
-            <option>Movie 5</option>
+            <option selected>Please select a movie...</option>
+            @foreach (var movie in Model.Movies)
+            {
+                <option movieID="@movie.MovieID">@movie.Title</option>
+            }
         </select>
     </div>
 
@@ -51,9 +51,57 @@
 
 @section Scripts {
     <script>
+        var hallID = 0;
+        var movieID = 0;
+        $('#hallSelect').change(function () {
+            hallID = $(this).find(':selected').attr('hallID');
+        });
+        $('#movieSelect').change(function () {
+            movieID = $(this).find(':selected').attr('movieID');
+        });
+
         $('#addProjectionButton').click(function (e) {
             e.preventDefault();
-            alert($('#movieDate').val());
+            debugger;
+            var dateOfProjection = $('#movieDate').val();
+            var splittedTime = dateOfProjection.split('-');
+            var year = splittedTime[0];
+            var month = splittedTime[1];
+            var day = splittedTime[2];
+            var hours = $('#hours').val();
+            var minutes = $('#minutes').val();
+
+
+            var fd = new FormData();
+            fd.append("hallID", hallID);
+            fd.append("movieID", movieID);
+            fd.append("year", year);
+            fd.append("month", month);
+            fd.append("day", day);
+            fd.append("hours", hours);
+            fd.append("minutes", minutes);
+
+            $.ajax({
+                url: "@Url.Action("CreateProjection", "Projection")",
+                type: 'POST',
+                processData: false,
+                contentType: false,
+                data: fd,
+                success: successCallback,
+                error: errorCallback
+            })
+
+            function successCallback(){
+                alert("success");
+                $('#hallSelect').val('');
+                $('#movieSelect').val('');
+                $('#hours').val('');
+                $('#minutes').val('');
+                $('#movieDate').val('');
+            }
+            function errorCallback(callback){
+                alert("Error: " + callback.statusText);
+            }
         })
     </script>
 }

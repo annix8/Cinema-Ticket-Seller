@@ -1,4 +1,4 @@
-﻿
+﻿@model CinemaTickets.Web.ViewModels.MoviesViewModel
 @{
     ViewBag.Title = "Add movie";
 }
@@ -65,11 +65,11 @@
     <div class="form-group">
         <label for="movieSelect">Select a movie</label>
         <select class="form-control" id="movieSelect">
-            <option>Movie 1</option>
-            <option>Movie 2</option>
-            <option>Movie 3</option>
-            <option>Movie 4</option>
-            <option>Movie 5</option>
+            <option selected>Select a movie you wish to delete...</option>
+            @foreach (var movie in Model.Movies)
+            {
+                <option movieID="@movie.MovieID">@movie.Title</option>
+            }
         </select>
     </div>
     <button id="deleteMovieButton" class="btn btn-primary">Submit</button>

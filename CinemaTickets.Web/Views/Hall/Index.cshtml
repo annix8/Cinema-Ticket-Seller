@@ -47,6 +47,7 @@
 
         function successCallback(callback) {
             alert("Success: Hall added to database");
+            $('#hallNumberToAdd').val('');
         }
         function errorCallback(callback) {
             alert("Error: " + callback.statusText);
