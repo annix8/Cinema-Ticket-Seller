@@ -11,7 +11,7 @@
 <form>
     <div class="form-group">
         <label for="hallNumber">Hall number</label>
-        <input type="number" class="form-control" id="hallNumber" placeholder="Hall number">
+        <input type="number" class="form-control" id="hallNumberToAdd" placeholder="Hall number">
     </div>
     <button id="addHallButton" class="btn btn-primary">Submit</button>
 </form>
@@ -23,7 +23,33 @@
 <form>
     <div class="form-group">
         <label for="hallNumber">Hall number</label>
-        <input type="number" class="form-control" id="hallNumber" placeholder="Hall number">
+        <input type="number" class="form-control" id="hallNumberToDelete" placeholder="Hall number">
     </div>
     <button id="removeHallButton" class="btn btn-primary">Submit</button>
 </form>
+
+@section Scripts{
+    <script>
+        $('#addHallButton').click(function (e) {
+            e.preventDefault();
+            var hallNumber = $('#hallNumberToAdd').val();
+
+            $.ajax({
+                url: "@Url.Action("CreateHall", "Hall")",
+                type: 'POST',
+                data: {
+                    'hallNumber': hallNumber
+                },
+                success: successCallback,
+                error: errorCallback
+            })
+        })
+
+        function successCallback(callback) {
+            alert("Success: Hall added to database");
+        }
+        function errorCallback(callback) {
+            alert("Error: " + callback.statusText);
+        }
+    </script>
+}

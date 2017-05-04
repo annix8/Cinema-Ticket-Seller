@@ -12,6 +12,6 @@ namespace CinemaTickets.Services.Services
         IQueryable<Hall> GetAllHalls();
         void AddHall(Hall hall);
         Hall GetHallById(int id);
-
+        Hall GetHallByHallNumber(int hallNumber);
     }
 }

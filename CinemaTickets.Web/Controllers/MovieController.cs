@@ -71,6 +71,7 @@ namespace CinemaTickets.Web.Controllers
             {
                 Movies = movies
             };
+
             return View(model);
         }
         [HttpPost]

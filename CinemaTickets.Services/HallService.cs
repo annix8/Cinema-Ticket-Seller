@@ -27,6 +27,11 @@ namespace CinemaTickets.Services
             return this._context.Halls;
         }
 
+        public Hall GetHallByHallNumber(int hallNumber)
+        {
+            return this._context.Halls.FirstOrDefault(h => h.HallNumber == hallNumber);
+        }
+
         public Hall GetHallById(int id)
         {
             return this._context.Halls.FirstOrDefault(h => h.HallID == id);
