@@ -13,10 +13,12 @@ namespace CinemaTickets.Web.Controllers
     {
         private IProjectionService _projectionService;
         private IMovieService _movieService;
+        private IHallService _hallService;
         public ProjectionController()
         {
             this._projectionService = new ProjectionService();
             this._movieService = new MovieService();
+            this._hallService = new HallService();
         }
 
         public ActionResult Index(Movie movie)
@@ -29,6 +31,7 @@ namespace CinemaTickets.Web.Controllers
         public ActionResult CreateProjection()
         {
             var allMovies = this._movieService.GetAllMovies().ToList();
+            var allHalls = this._hallService.GetAllHalls().ToList();
             return View();
         }
     }
