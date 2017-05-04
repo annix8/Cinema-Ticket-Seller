@@ -66,7 +66,12 @@ namespace CinemaTickets.Web.Controllers
 
         public ActionResult AddMovie()
         {
-            return View();
+            var movies = this._movieService.GetAllMovies().ToList();
+            var model = new MoviesViewModel
+            {
+                Movies = movies
+            };
+            return View(model);
         }
         [HttpPost]
         public ActionResult AddMovie(FormCollection data)
