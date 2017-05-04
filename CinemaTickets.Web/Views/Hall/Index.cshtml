@@ -2,6 +2,28 @@
 @{
     ViewBag.Title = "Index";
 }
+<div>
+    <h2>Create Hall</h2>
+    <button class="btn-lg btn-primary" onclick="window.location='@Request.UrlReferrer.AbsoluteUri'" style="float:right;margin-top:-50px;">Back</button>
+</div>
+<hr />
+<p>If, by any chance, a new hall was built in the cinema, here is the place to log it into the database.</p>
+<form>
+    <div class="form-group">
+        <label for="hallNumber">Hall number</label>
+        <input type="number" class="form-control" id="hallNumber" placeholder="Hall number">
+    </div>
+    <button id="addHallButton" class="btn btn-primary">Submit</button>
+</form>
+<hr />
 
-<h2>Create Hall</h2>
-
+<h2>Delete Hall</h2>
+<hr />
+<p>If, by any chance, a hall was removed from the cinema, here is the place to delete it from the database.</p>
+<form>
+    <div class="form-group">
+        <label for="hallNumber">Hall number</label>
+        <input type="number" class="form-control" id="hallNumber" placeholder="Hall number">
+    </div>
+    <button id="removeHallButton" class="btn btn-primary">Submit</button>
+</form>

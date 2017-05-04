@@ -3,5 +3,57 @@
     ViewBag.Title = "CreateProjection";
 }
 
-<h2>CreateProjection</h2>
+<div>
+    <h2>Create projection</h2>
+    <button class="btn-lg btn-primary" onclick="window.location='@Request.UrlReferrer.AbsoluteUri'" style="float:right;margin-top:-50px;">Back</button>
+</div>
+<hr />
+<form>
+    <div class="form-group">
+        <label for="hallSelect">Select a hall number</label>
+        <select class="form-control" id="hallSelect">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+        </select>
+    </div>
 
+    <div class="form-group">
+        <label for="movieSelect">Select a movie</label>
+        <select class="form-control" id="movieSelect">
+            <option>Movie 1</option>
+            <option>Movie 2</option>
+            <option>Movie 3</option>
+            <option>Movie 4</option>
+            <option>Movie 5</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="dateSelect">Choose a date</label>
+        <input class="form-control" type="date" name="movieDay" id="movieDate">
+    </div>
+
+    <div class="form-group">
+        <label for="hours">Hours</label>
+        <input type="number" class="form-control" id="hours" placeholder="Hours">
+    </div>
+
+    <div class="form-group">
+        <label for="minutes">Minutes</label>
+        <input type="number" class="form-control" id="minutes" placeholder="Minutes">
+    </div>
+
+    <button id="addProjectionButton" class="btn btn-primary">Submit</button>
+</form>
+
+@section Scripts {
+    <script>
+        $('#addProjectionButton').click(function (e) {
+            e.preventDefault();
+            alert($('#movieDate').val());
+        })
+    </script>
+}
