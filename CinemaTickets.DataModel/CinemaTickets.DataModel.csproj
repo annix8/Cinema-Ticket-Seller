@@ -50,43 +50,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CinemaTicketsDbContext.cs" />
-    <Compile Include="Migrations\201702201943164_Initial.cs" />
-    <Compile Include="Migrations\201702201943164_Initial.Designer.cs">
-      <DependentUpon>201702201943164_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702251702251_AddHallNumberAndEmployeeEmail.cs" />
-    <Compile Include="Migrations\201702251702251_AddHallNumberAndEmployeeEmail.Designer.cs">
-      <DependentUpon>201702251702251_AddHallNumberAndEmployeeEmail.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704271409187_AddedNewPropertiesToMovieEntity.cs" />
-    <Compile Include="Migrations\201704271409187_AddedNewPropertiesToMovieEntity.Designer.cs">
-      <DependentUpon>201704271409187_AddedNewPropertiesToMovieEntity.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704271422547_MovieEntityPropertiesExtended.cs" />
-    <Compile Include="Migrations\201704271422547_MovieEntityPropertiesExtended.Designer.cs">
-      <DependentUpon>201704271422547_MovieEntityPropertiesExtended.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704271917266_AddedGenreToMovieTable.cs" />
-    <Compile Include="Migrations\201704271917266_AddedGenreToMovieTable.Designer.cs">
-      <DependentUpon>201704271917266_AddedGenreToMovieTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704272003423_AddedIsAdminPropertyToEmployeeTable.cs" />
-    <Compile Include="Migrations\201704272003423_AddedIsAdminPropertyToEmployeeTable.Designer.cs">
-      <DependentUpon>201704272003423_AddedIsAdminPropertyToEmployeeTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705020846212_AddedImageTableAndImageIDPropertyToMovieTable.cs" />
-    <Compile Include="Migrations\201705020846212_AddedImageTableAndImageIDPropertyToMovieTable.Designer.cs">
-      <DependentUpon>201705020846212_AddedImageTableAndImageIDPropertyToMovieTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705031201532_AddedSeatsTable.cs" />
-    <Compile Include="Migrations\201705031201532_AddedSeatsTable.Designer.cs">
-      <DependentUpon>201705031201532_AddedSeatsTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705031203032_RemovedPropertiesFromHallTable.cs" />
-    <Compile Include="Migrations\201705031203032_RemovedPropertiesFromHallTable.Designer.cs">
-      <DependentUpon>201705031203032_RemovedPropertiesFromHallTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Hall.cs" />
     <Compile Include="Models\Image.cs" />
@@ -101,35 +64,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201702201943164_Initial.resx">
-      <DependentUpon>201702201943164_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702251702251_AddHallNumberAndEmployeeEmail.resx">
-      <DependentUpon>201702251702251_AddHallNumberAndEmployeeEmail.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704271409187_AddedNewPropertiesToMovieEntity.resx">
-      <DependentUpon>201704271409187_AddedNewPropertiesToMovieEntity.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704271422547_MovieEntityPropertiesExtended.resx">
-      <DependentUpon>201704271422547_MovieEntityPropertiesExtended.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704271917266_AddedGenreToMovieTable.resx">
-      <DependentUpon>201704271917266_AddedGenreToMovieTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704272003423_AddedIsAdminPropertyToEmployeeTable.resx">
-      <DependentUpon>201704272003423_AddedIsAdminPropertyToEmployeeTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705020846212_AddedImageTableAndImageIDPropertyToMovieTable.resx">
-      <DependentUpon>201705020846212_AddedImageTableAndImageIDPropertyToMovieTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705031201532_AddedSeatsTable.resx">
-      <DependentUpon>201705031201532_AddedSeatsTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705031203032_RemovedPropertiesFromHallTable.resx">
-      <DependentUpon>201705031203032_RemovedPropertiesFromHallTable.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

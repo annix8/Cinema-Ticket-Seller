@@ -13,7 +13,7 @@ namespace CinemaTickets.DataModel.Models
         public int EmployeeID { get; set; }
         public Projection Projection { get; set; }
         public int ProjectionID { get; set; }
-        public int SeatNumber { get; set; }
-        public int RowNumber { get; set; }
+        public int? SeatID { get; set; }
+        public virtual Seat Seat { get; set; }
     }
 }

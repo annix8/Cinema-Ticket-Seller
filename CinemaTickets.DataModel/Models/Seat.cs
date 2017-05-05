@@ -12,6 +12,6 @@ namespace CinemaTickets.DataModel.Models
         public int Row { get; set; }
         public int Column { get; set; }
         public int HallID { get; set; }
-        public int ProjectionID { get; set; }
+        public virtual Hall Hall { get; set; }
     }
 }
