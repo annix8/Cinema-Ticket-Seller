@@ -59,7 +59,7 @@ namespace CinemaTickets.Web.Controllers
             var day = int.Parse(data["day"]);
             var hours = int.Parse(data["hours"]);
             var minutes = int.Parse(data["minutes"]);
-            var date = new DateTime(year,month,day,hours,minutes,0);
+            var date = new DateTime(year, month, day, hours, minutes, 0);
 
             var context = new CinemaTicketsDbContext();
             using (context)
@@ -75,7 +75,7 @@ namespace CinemaTickets.Web.Controllers
                 var movieFromDb = context.Movies.FirstOrDefault(m => m.MovieID == movieID);
                 if (hallFromDb == null || movieFromDb == null)
                 {
-                    return new HttpStatusCodeResult(400,"Something went wrong! :(");
+                    return new HttpStatusCodeResult(400, "Something went wrong! :(");
                 }
 
                 var projection = new Projection
@@ -100,56 +100,64 @@ namespace CinemaTickets.Web.Controllers
                 context.SaveChanges();
             }
 
-            return new HttpStatusCodeResult(200,"OK");
+            return new HttpStatusCodeResult(200, "OK");
         }
 
         [HttpPost]
         public ActionResult RedirectProjectionData(FormCollection data)
         {
-            var kidsRetirees = int.Parse(data["kidsRetirees"]);
-            var students = int.Parse(data["students"]);
-            var adults = int.Parse(data["adults"]);
-            var projectionID = int.Parse(data["projectionID"]);
-            var totalPrice = decimal.Parse(data["totalPrice"]);
-
-            var seatDtos = new List<SeatDTO>();
-            using (var context = new CinemaTicketsDbContext())
+            try
             {
-                var projection = context.Projections.FirstOrDefault(p => p.ProjectionID == projectionID);
-                var tickets = projection.Tickets.ToList();
+                var kidsRetirees = int.Parse(data["kidsRetirees"]);
+                var students = int.Parse(data["students"]);
+                var adults = int.Parse(data["adults"]);
+                var projectionID = int.Parse(data["projectionID"]);
+                var totalPrice = decimal.Parse(data["totalPrice"]);
 
-                foreach (var ticket in tickets)
+                var seatDtos = new List<SeatDTO>();
+                using (var context = new CinemaTicketsDbContext())
                 {
-                    var seatDto = new SeatDTO
-                    {
-                        Column = ticket.Seat.Column,
-                        Row = ticket.Seat.Row,
-                        HallID = ticket.Seat.HallID,
-                        SeatID = ticket.Seat.SeatID
-                    };
+                    var projection = context.Projections.FirstOrDefault(p => p.ProjectionID == projectionID);
+                    var tickets = projection.Tickets.ToList();
 
-                    if (ticket.IsSold)
+                    foreach (var ticket in tickets)
                     {
-                        seatDto.IsTaken = true;
+                        var seatDto = new SeatDTO
+                        {
+                            Column = ticket.Seat.Column,
+                            Row = ticket.Seat.Row,
+                            HallID = ticket.Seat.HallID,
+                            SeatID = ticket.Seat.SeatID
+                        };
+
+                        if (ticket.IsSold)
+                        {
+                            seatDto.IsTaken = true;
+                        }
+                        else
+                        {
+                            seatDto.IsTaken = false;
+                        }
+                        seatDtos.Add(seatDto);
                     }
-                    else
-                    {
-                        seatDto.IsTaken = false;
-                    }
-                    seatDtos.Add(seatDto);
                 }
+
+                var model = new SeatViewModel()
+                {
+                    Adults = adults,
+                    KidsRetirees = kidsRetirees,
+                    SeatDtos = seatDtos,
+                    Students = students,
+                    TotalPrice = totalPrice
+                };
+
+                CacheViewModel.CacheModel(model);
             }
 
-            var model = new SeatViewModel()
+            catch (Exception e)
             {
-                Adults = adults,
-                KidsRetirees = kidsRetirees,
-                SeatDtos = seatDtos,
-                Students = students,
-                TotalPrice = totalPrice
-            };
-
-            CacheViewModel.CacheModel(model);
+                return new HttpStatusCodeResult(400, "Something went wrong! :(");
+            }
 
             return new HttpStatusCodeResult(200, "OK");
         }

@@ -7,5 +7,7 @@
 
 @foreach (var item in Model.SeatDtos)
 {
-    <div><span>@item.Row</span>-<span>@item.Column</span><span>@item.IsTaken</span></div>
+    <div><span>@item.Row</span>-<span>@item.Column</span><span>Is seat taken - @item.IsTaken</span></div>
 }
+
+<div>Total price - @Model.TotalPrice</div>
