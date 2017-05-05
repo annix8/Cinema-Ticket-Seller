@@ -1,4 +1,5 @@
 ﻿using CinemaTickets.DataModel;
+using CinemaTickets.Web.Cache;
 using CinemaTickets.Web.Dtos;
 using CinemaTickets.Web.ViewModels;
 using System;
@@ -11,10 +12,10 @@ namespace CinemaTickets.Web.Controllers
 {
     public class SeatController : Controller
     {
-        [HttpPost]
         public ActionResult Index()
         {
-            return View();
+            var model = CacheViewModel.svm;
+            return View(model);
         }
     }
 }

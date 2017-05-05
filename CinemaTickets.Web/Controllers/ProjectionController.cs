@@ -2,6 +2,7 @@
 using CinemaTickets.DataModel.Models;
 using CinemaTickets.Services;
 using CinemaTickets.Services.Services;
+using CinemaTickets.Web.Cache;
 using CinemaTickets.Web.Dtos;
 using CinemaTickets.Web.ViewModels;
 using System;
@@ -147,7 +148,10 @@ namespace CinemaTickets.Web.Controllers
                 Students = students,
                 TotalPrice = totalPrice
             };
-            return View(model);
+
+            CacheViewModel.CacheModel(model);
+
+            return new HttpStatusCodeResult(200, "OK");
         }
     }
 }
