@@ -18,7 +18,8 @@ namespace CinemaTickets.Web.Controllers
         }
         public ActionResult Index()
         {
-            return View();
+            var allHalls = this._hallService.GetAllHalls().ToList();
+            return View(allHalls);
         }
 
         [HttpPost]

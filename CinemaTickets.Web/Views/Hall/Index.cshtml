@@ -22,8 +22,14 @@
 <p>If, by any chance, a hall was removed from the cinema, here is the place to delete it from the database.</p>
 <form>
     <div class="form-group">
-        <label for="hallNumber">Hall number</label>
-        <input type="number" class="form-control" id="hallNumberToDelete" placeholder="Hall number">
+        <label for="hallToDelete">Delete hall:</label>
+        <select class="form-control" id="hallToDelete">
+            <option selected>Select a hall you wish to delete...</option>
+            @foreach (var hall in Model)
+            {
+                <option hallID="@hall.HallID">@hall.HallNumber</option>
+            }
+        </select>
     </div>
     <button id="removeHallButton" class="btn btn-primary">Submit</button>
 </form>
@@ -33,6 +39,11 @@
         $('#addHallButton').click(function (e) {
             e.preventDefault();
             var hallNumber = $('#hallNumberToAdd').val();
+
+            if (hallNumber < 1) {
+                alert("Hall number cannot be less than 1");
+                return;
+            }
 
             $.ajax({
                 url: "@Url.Action("CreateHall", "Hall")",
