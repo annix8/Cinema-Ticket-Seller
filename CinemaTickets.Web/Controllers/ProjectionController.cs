@@ -25,7 +25,7 @@ namespace CinemaTickets.Web.Controllers
 
         public ActionResult Index(Movie movie)
         {
-            var projectionForSelectedMovie = this._projectionService.GetProjectionsByMovie(movie.MovieID).ToList();
+            var projectionForSelectedMovie = this._projectionService.GetProjectionsByMovie(movie.MovieID).Where(p => p.TimeOfProjection > DateTime.Now).OrderBy(p => p.TimeOfProjection).ToList();
             ViewBag.MovieTitle = movie.Title;
             return View(projectionForSelectedMovie);
         }
