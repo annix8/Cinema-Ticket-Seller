@@ -10,3 +10,27 @@
 {
     <h3>There are no projections for this movie available.</h3>
 }
+
+<form>
+    <div class="form-group">
+        <label for="projectionSelect">Select a projection</label>
+        <select class="form-control" id="projectionSelect">
+            <option selected>Select a projection...</option>
+            @foreach (var projection in Model)
+            {
+                <option projectionID="@projection.ProjectionID">@projection.TimeOfProjection</option>
+            }
+        </select>
+    </div>
+    <button id="selectSeatsButton" class="btn btn-primary">Continue to seats selection...</button>
+</form>
+
+
+@section Scripts{
+    <script>
+        var projectionID = 0;
+        $('#projectionSelect').change(function () {
+            projectionID = $(this).find(':selected').attr('projectionID');
+        });
+    </script>
+    }

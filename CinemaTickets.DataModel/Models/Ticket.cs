@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,5 +16,8 @@ namespace CinemaTickets.DataModel.Models
         public int ProjectionID { get; set; }
         public int? SeatID { get; set; }
         public virtual Seat Seat { get; set; }
+        public bool IsSold { get; set; }
+        [Timestamp]
+        public byte[] TimeStamp { get; set; }
     }
 }
