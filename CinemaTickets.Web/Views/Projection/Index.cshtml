@@ -6,7 +6,7 @@
 <h2>Choose projection for: @ViewBag.MovieTitle</h2>
 <hr />
 
-@if(Model.Count == 0)
+@if (Model.Count == 0)
 {
     <h3>There are no projections for this movie available.</h3>
 }
@@ -22,15 +22,44 @@
             }
         </select>
     </div>
+    <p><i>Select ticket type below:</i></p>
+    <div style="border:1px solid black;border-radius:10px;width:25%;margin-bottom:10px;">
+        <div class="form-group">
+            <label for="kidsRetirees" style="padding-left:10px;">For kids/retirees: 6.50</label>
+            <select class="form-control" id="kidsRetirees">
+                <option selected>Select ticket count...</option>
+                @for (int i = 1; i <= 10; i++)
+                {
+                    <option>@i</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="students" style="padding-left:10px;">For students: 7.50</label>
+            <select class="form-control" id="students">
+                <option selected>Select ticket count...</option>
+                @for (int i = 1; i <= 10; i++)
+                {
+                    <option>@i</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="adults" style="padding-left:10px;">For adults: 10</label>
+            <select class="form-control" id="adults">
+                <option selected>Select ticket count...</option>
+                @for (int i = 1; i <= 10; i++)
+                {
+                    <option>@i</option>
+                }
+            </select>
+        </div>
+    </div>
     <div class="form-group">
-        <label for="ticketCount">Select ticket count</label>
-        <select class="form-control" id="ticketCount">
-            <option selected>Select ticket count...</option>
-            @for (int i = 1; i <= 10; i++)
-            {
-                <option>@i</option>
-            }
-        </select>
+        <label for="totalPrice">Total price</label>
+        <input class="form-control" type="text" name="totalPriceBox" id="totalPriceBox" disabled />
     </div>
     <button id="selectSeatsButton" class="btn btn-primary">Continue to seats selection...</button>
 </form>
@@ -38,9 +67,37 @@
 
 @section Scripts{
     <script>
+        var kidsRetireesPrice = 6.50;
+        var studentsPrice = 7.50;
+        var adultsPrice = 10;
         var projectionID = 0;
+        var kidsRetirees = 0;
+        var students = 0;
+        var adults = 0;
+
         $('#projectionSelect').change(function () {
             projectionID = $(this).find(':selected').attr('projectionID');
         });
+
+        $('#kidsRetirees').change(function () {
+            kidsRetirees = $(this).find(':selected').val();
+        });
+
+        $('#students').change(function () {
+            students = $(this).find(':selected').val();
+        });
+
+        $('#adults').change(function () {
+            adults = $(this).find(':selected').val();
+        });
+
+        $('#selectSeatsButton').click(function (e) {
+            e.preventDefault();
+            var kidsRetireesTotalPrice = kidsRetireesPrice * kidsRetirees;
+            var studentsTotalPrice = studentsPrice * students;
+            var adultsTotalPrice = adultsPrice * adults;
+            var totalTicketsPrice = Number(kidsRetireesTotalPrice + studentsTotalPrice + adultsTotalPrice).toFixed(2);
+            $('#totalPriceBox').val(totalTicketsPrice + "$");
+        })
     </script>
-    }
+}
