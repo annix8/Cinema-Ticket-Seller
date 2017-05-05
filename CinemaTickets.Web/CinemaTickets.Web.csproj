@@ -183,6 +183,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MovieController.cs" />
     <Compile Include="Controllers\ProjectionController.cs" />
+    <Compile Include="Controllers\SeatController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -261,6 +262,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Views\Error\" />
     <Folder Include="Views\Image\" />
+    <Folder Include="Views\Seat\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

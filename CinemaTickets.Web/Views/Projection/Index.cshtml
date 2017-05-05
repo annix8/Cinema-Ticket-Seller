@@ -56,10 +56,11 @@
                 }
             </select>
         </div>
+        <button class="btn btn-primary" id="chooseTicketTypes" style="margin-bottom:10px;">Confirm tickets</button>
     </div>
     <div class="form-group">
         <label for="totalPrice">Total price</label>
-        <input class="form-control" type="text" name="totalPriceBox" id="totalPriceBox" disabled />
+        <input class="form-control" type="text" name="totalPriceBox" id="totalPriceBox" disabled value="0"/>
     </div>
     <button id="selectSeatsButton" class="btn btn-primary">Continue to seats selection...</button>
 </form>
@@ -80,24 +81,52 @@
         });
 
         $('#kidsRetirees').change(function () {
-            kidsRetirees = $(this).find(':selected').val();
+            kidsRetirees = Number($(this).find(':selected').val());
         });
 
         $('#students').change(function () {
-            students = $(this).find(':selected').val();
+            students = Number($(this).find(':selected').val());
         });
 
         $('#adults').change(function () {
-            adults = $(this).find(':selected').val();
+            adults = Number($(this).find(':selected').val());
         });
 
-        $('#selectSeatsButton').click(function (e) {
+        $('#chooseTicketTypes').click(function (e) {
             e.preventDefault();
             var kidsRetireesTotalPrice = kidsRetireesPrice * kidsRetirees;
             var studentsTotalPrice = studentsPrice * students;
             var adultsTotalPrice = adultsPrice * adults;
             var totalTicketsPrice = Number(kidsRetireesTotalPrice + studentsTotalPrice + adultsTotalPrice).toFixed(2);
             $('#totalPriceBox').val(totalTicketsPrice + "$");
+        });
+
+        $('#selectSeatsButton').click(function (e) {
+            e.preventDefault();
+            var totalPriceOfTickets = $('#totalPriceBox').val().slice(0,-1);
+            var fd = new FormData();
+            fd.append("kidsRetirees", kidsRetirees);
+            fd.append("students", students);
+            fd.append("adults", adults);
+            fd.append("projectionID", projectionID);
+            fd.append("totalPrice", totalPriceOfTickets);
+
+            $.ajax({
+                url: "@Url.Action("Index","Seat")",
+                type: 'POST',
+                processData: false,
+                contentType: false,
+                data: fd,
+                success: successCallback,
+                error: errorCallback
+            })
         })
+
+        function successCallback() {
+            alert("success");
+        }
+        function errorCallback() {
+            alert("error");
+        }
     </script>
 }

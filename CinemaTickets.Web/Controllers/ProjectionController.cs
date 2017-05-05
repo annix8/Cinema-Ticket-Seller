@@ -97,7 +97,7 @@ namespace CinemaTickets.Web.Controllers
 
                 context.SaveChanges();
             }
-            
+
             return new HttpStatusCodeResult(200,"OK");
         }
     }
