@@ -75,6 +75,7 @@ namespace CinemaTickets.Web.Controllers
                 {
                     return new HttpStatusCodeResult(400,"Something went wrong! :(");
                 }
+
                 var projection = new Projection
                 {
                     Hall = hallFromDb,
@@ -82,6 +83,18 @@ namespace CinemaTickets.Web.Controllers
                     TimeOfProjection = date
                 };
                 context.Projections.Add(projection);
+
+                var seats = projection.Hall.Seats.ToList();
+                foreach (var seat in seats)
+                {
+                    context.Tickets.Add(new Ticket
+                    {
+                        IsSold = false,
+                        Projection = projection,
+                        Seat = seat
+                    });
+                }
+
                 context.SaveChanges();
             }
             
