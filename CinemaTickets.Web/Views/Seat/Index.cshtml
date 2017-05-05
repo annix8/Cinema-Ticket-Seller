@@ -1,0 +1,11 @@
+﻿@model CinemaTickets.Web.ViewModels.SeatViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@foreach (var item in Model.SeatDtos)
+{
+    <div><span>@item.Row</span>-<span>@item.Column</span><span>@item.IsTaken</span></div>
+}

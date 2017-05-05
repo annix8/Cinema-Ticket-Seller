@@ -184,6 +184,7 @@
     <Compile Include="Controllers\MovieController.cs" />
     <Compile Include="Controllers\ProjectionController.cs" />
     <Compile Include="Controllers\SeatController.cs" />
+    <Compile Include="Dtos\SeatDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -192,6 +193,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\SeatViewModel.cs" />
     <Compile Include="ViewModels\HallsMoviesViewModel.cs" />
     <Compile Include="ViewModels\MoviesViewModel.cs" />
   </ItemGroup>
@@ -257,12 +259,12 @@
     <Content Include="Views\Projection\Index.cshtml" />
     <Content Include="Views\Projection\CreateProjection.cshtml" />
     <Content Include="Views\Hall\Index.cshtml" />
+    <Content Include="Views\Seat\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Error\" />
     <Folder Include="Views\Image\" />
-    <Folder Include="Views\Seat\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

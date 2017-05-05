@@ -2,6 +2,7 @@
 using CinemaTickets.DataModel.Models;
 using CinemaTickets.Services;
 using CinemaTickets.Services.Services;
+using CinemaTickets.Web.Dtos;
 using CinemaTickets.Web.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -99,6 +100,54 @@ namespace CinemaTickets.Web.Controllers
             }
 
             return new HttpStatusCodeResult(200,"OK");
+        }
+
+        [HttpPost]
+        public ActionResult RedirectProjectionData(FormCollection data)
+        {
+            var kidsRetirees = int.Parse(data["kidsRetirees"]);
+            var students = int.Parse(data["students"]);
+            var adults = int.Parse(data["adults"]);
+            var projectionID = int.Parse(data["projectionID"]);
+            var totalPrice = decimal.Parse(data["totalPrice"]);
+
+            var seatDtos = new List<SeatDTO>();
+            using (var context = new CinemaTicketsDbContext())
+            {
+                var projection = context.Projections.FirstOrDefault(p => p.ProjectionID == projectionID);
+                var tickets = projection.Tickets.ToList();
+
+                foreach (var ticket in tickets)
+                {
+                    var seatDto = new SeatDTO
+                    {
+                        Column = ticket.Seat.Column,
+                        Row = ticket.Seat.Row,
+                        HallID = ticket.Seat.HallID,
+                        SeatID = ticket.Seat.SeatID
+                    };
+
+                    if (ticket.IsSold)
+                    {
+                        seatDto.IsTaken = true;
+                    }
+                    else
+                    {
+                        seatDto.IsTaken = false;
+                    }
+                    seatDtos.Add(seatDto);
+                }
+            }
+
+            var model = new SeatViewModel()
+            {
+                Adults = adults,
+                KidsRetirees = kidsRetirees,
+                SeatDtos = seatDtos,
+                Students = students,
+                TotalPrice = totalPrice
+            };
+            return View(model);
         }
     }
 }
