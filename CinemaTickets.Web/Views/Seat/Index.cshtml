@@ -5,7 +5,7 @@
 
 <h2>Seat selection</h2>
 <hr />
-
+<div id="screen"><b>Screen</b></div>
 <div id="seatsTable"></div>
 
 <div>Total price - @Model.TotalPrice</div>
@@ -36,7 +36,7 @@
             html += @"</tr></table>";
             var htmlToPass = Html.Raw(html);
         }
-        var test = `@htmlToPass`;
-        $('#seatsTable').append($(test));
+        var tableAsString = `@htmlToPass`;
+        $('#seatsTable').append($(tableAsString));
     </script>
     }
