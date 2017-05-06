@@ -3,11 +3,40 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Seat selection</h2>
+<hr />
 
-@foreach (var item in Model.SeatDtos)
-{
-    <div><span>@item.Row</span>-<span>@item.Column</span><span>Is seat taken - @item.IsTaken</span></div>
-}
+<div id="seatsTable"></div>
 
 <div>Total price - @Model.TotalPrice</div>
+
+@section Scripts{
+    <script>
+        @{ 
+            var html = "<table class=\"table table-bordered\"><tr>";
+            var counter = 1;
+        }
+        @foreach (var item in Model.SeatDtos)
+        {
+            var color = "green";
+            if (item.IsTaken)
+            {
+                color = "red";
+            }
+
+            if(counter == 11)
+            {
+                html += @"</tr><tr>";
+                counter = 1;
+            }
+            html += $"<td seatID=\"{item.SeatID}\" style=\"text-align:center;background-color:{color}\"" + $">{item.Column}</td>";
+            counter++;
+        }
+        @{ 
+            html += @"</tr></table>";
+            var htmlToPass = Html.Raw(html);
+        }
+        var test = `@htmlToPass`;
+        $('#seatsTable').append($(test));
+    </script>
+    }

@@ -6,6 +6,9 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using CinemaTickets.Web.Models;
+using CinemaTickets.DataModel;
+using System.Linq;
+using CinemaTickets.DataModel.Models;
 
 namespace CinemaTickets.Web
 {
@@ -34,7 +37,7 @@ namespace CinemaTickets.Web
                         validateInterval: TimeSpan.FromMinutes(30),
                         regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
                 }
-            });            
+            });
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
             // Enables the application to temporarily store user information when they are verifying the second factor in the two-factor authentication process.
@@ -63,6 +66,41 @@ namespace CinemaTickets.Web
             //    ClientId = "",
             //    ClientSecret = ""
             //});
+            SeedHallsAndSeats();
+        }
+
+        private void SeedHallsAndSeats()
+        {
+            using (var context = new CinemaTicketsDbContext())
+            {
+                if (!context.Database.Exists())
+                {
+                    for (int i = 1; i <= 8; i++)
+                    {
+                        var hall = new Hall
+                        {
+                            HallNumber = i
+                        };
+                        context.Halls.Add(hall);
+
+                        for (int row = 1; row <= 10; row++)
+                        {
+                            for (int col = 1; col <= 10; col++)
+                            {
+                                var seat = new Seat()
+                                {
+                                   Hall = hall,
+                                   Row = row,
+                                   Column = col 
+                                };
+                                context.Seats.Add(seat);
+                            }
+                        }
+                    }
+
+                    context.SaveChanges();
+                }
+            }
         }
     }
 }
