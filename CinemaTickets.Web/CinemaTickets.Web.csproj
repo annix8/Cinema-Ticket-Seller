@@ -186,6 +186,7 @@
     <Compile Include="Controllers\MovieController.cs" />
     <Compile Include="Controllers\ProjectionController.cs" />
     <Compile Include="Controllers\SeatController.cs" />
+    <Compile Include="Controllers\TicketController.cs" />
     <Compile Include="Dtos\SeatDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -262,6 +263,7 @@
     <Content Include="Views\Projection\CreateProjection.cshtml" />
     <Content Include="Views\Hall\Index.cshtml" />
     <Content Include="Views\Seat\Index.cshtml" />
+    <Content Include="Views\Ticket\VisualizeTickets.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
