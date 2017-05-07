@@ -29,7 +29,7 @@
                 html += @"</tr><tr>";
                 counter = 1;
             }
-            html += $"<td seatID=\"{item.SeatID}\" style=\"text-align:center;background-color:{color}\"" + $">{item.Column}</td>";
+            html += $"<td seatID=\"{item.SeatID}\" style=\"text-align:center;background-color:{color};cursor:pointer;\"" + $">{item.Column}</td>";
             counter++;
         }
         @{
@@ -55,7 +55,6 @@
                 this.style.backgroundColor = 'yellow';
                 seats.push(tdSeatID);
             }
-            console.log(seats);
         })
     </script>
 }
