@@ -7,6 +7,7 @@
 <hr />
 <div id="screen"><b>Screen</b></div>
 <div id="seatsTable"></div>
+<button id="finishPurchase" class="btn btn-primary btn-lg" style="float:right;margin-top:-10px;">Finish purchase</button>
 
 <div>Total price - @Model.TotalPrice</div>
 
@@ -56,5 +57,34 @@
                 seats.push(tdSeatID);
             }
         })
+
+        $('#finishPurchase').click(function (e) {
+            e.preventDefault();
+            var stringSeats = seats.join(',');
+
+            var fd = new FormData();
+            fd.append("seats", stringSeats);
+            fd.append("kidsRetirees",@Model.KidsRetirees);
+            fd.append("students",@Model.Students);
+            fd.append("adults",@Model.Adults);
+            fd.append("projectionID",@Model.ProjectionID);
+
+            $.ajax({
+                url: "@Url.Action("BuyTickets", "Seat")",
+                type: 'POST',
+                processData: false,
+                contentType: false,
+                data: fd,
+                success: successCallback,
+                error: errorCallback
+            })
+        });
+
+        function successCallback(){
+            alert("success")
+        }
+        function errorCallback(){
+            alert("error")
+        }
     </script>
 }

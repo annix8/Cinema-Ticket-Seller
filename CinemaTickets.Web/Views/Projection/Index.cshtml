@@ -25,7 +25,7 @@
     <p><i>Select ticket type below:</i></p>
     <div style="border:1px solid black;border-radius:10px;width:25%;margin-bottom:10px;">
         <div class="form-group">
-            <label for="kidsRetirees" style="padding-left:10px;">For kids/retirees: 6.50</label>
+            <label for="kidsRetirees" style="padding-left:10px;">For kids/retirees: @CinemaTickets.Web.Constants.TicketPrices.kidsRetirees</label>
             <select class="form-control" id="kidsRetirees">
                 <option selected>0</option>
                 @for (int i = 1; i <= 10; i++)
@@ -36,7 +36,7 @@
         </div>
 
         <div class="form-group">
-            <label for="students" style="padding-left:10px;">For students: 7.50</label>
+            <label for="students" style="padding-left:10px;">For students: @CinemaTickets.Web.Constants.TicketPrices.students</label>
             <select class="form-control" id="students">
                 <option selected>0</option>
                 @for (int i = 1; i <= 10; i++)
@@ -47,7 +47,7 @@
         </div>
 
         <div class="form-group">
-            <label for="adults" style="padding-left:10px;">For adults: 10</label>
+            <label for="adults" style="padding-left:10px;">For adults: @CinemaTickets.Web.Constants.TicketPrices.adults</label>
             <select class="form-control" id="adults">
                 <option selected>0</option>
                 @for (int i = 1; i <= 10; i++)
@@ -68,9 +68,9 @@
 
 @section Scripts{
     <script>
-        var kidsRetireesPrice = 6.50;
-        var studentsPrice = 7.50;
-        var adultsPrice = 10;
+        var kidsRetireesPrice = @CinemaTickets.Web.Constants.TicketPrices.kidsRetirees;
+        var studentsPrice = @CinemaTickets.Web.Constants.TicketPrices.students;
+        var adultsPrice = @CinemaTickets.Web.Constants.TicketPrices.adults;
         var projectionID = 0;
         var kidsRetirees = 0;
         var students = 0;

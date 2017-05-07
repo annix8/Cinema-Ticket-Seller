@@ -20,6 +20,11 @@ namespace CinemaTickets.Web.Controllers
 
         public ActionResult BuyTickets(FormCollection data)
         {
+            var kidsRetirees = int.Parse(data["kidsRetirees"]);
+            var students = int.Parse(data["students"]);
+            var adults = int.Parse(data["adults"]);
+            var projectionID = int.Parse(data["projectionID"]);
+            var seats = data["seats"].Split(',').Select(int.Parse).ToArray();
             return new HttpStatusCodeResult(200, "OK");
         }
     }
