@@ -1,4 +1,5 @@
-﻿using CinemaTickets.DataModel.Models;
+﻿using CinemaTickets.DataModel;
+using CinemaTickets.DataModel.Models;
 using CinemaTickets.Services;
 using CinemaTickets.Services.Services;
 using System;
@@ -38,7 +39,24 @@ namespace CinemaTickets.Web.Controllers
 
             try
             {
-                this._hallService.AddHall(hallToAdd);
+                using(var context = new CinemaTicketsDbContext())
+                {
+                    for (int row = 1; row <= 10; row++)
+                    {
+                        for (int col = 1; col <= 10; col++)
+                        {
+                            var seat = new Seat()
+                            {
+                                Hall = hallToAdd,
+                                Row = row,
+                                Column = col
+                            };
+                            context.Seats.Add(seat);
+                        }
+                    }
+                    context.SaveChanges();
+                }
+                
             }
             catch(Exception e)
             {
