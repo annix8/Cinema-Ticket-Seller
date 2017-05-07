@@ -10,6 +10,7 @@ namespace CinemaTickets.DataModel.Models
     public class Ticket
     {
         public int TicketID { get; set; }
+        public decimal? Price { get; set; }
         public Employee Employee { get; set; }
         public int? EmployeeID { get; set; }
         public Projection Projection { get; set; }

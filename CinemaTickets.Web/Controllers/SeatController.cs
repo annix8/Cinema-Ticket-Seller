@@ -25,7 +25,7 @@ namespace CinemaTickets.Web.Controllers
             var adults = int.Parse(data["adults"]);
             var projectionID = int.Parse(data["projectionID"]);
             var seats = data["seats"].Split(',').Select(int.Parse).ToArray();
-
+            
             using(var context = new CinemaTicketsDbContext())
             {
                 var tickets = context.Projections.FirstOrDefault(p => p.ProjectionID == projectionID).Tickets.ToList();
