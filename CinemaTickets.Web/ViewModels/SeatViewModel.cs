@@ -13,5 +13,6 @@ namespace CinemaTickets.Web.ViewModels
         public int KidsRetirees { get; set; }
         public int Students { get; set; }
         public int Adults { get; set; }
+        public int ProjectionID { get; set; }
     }
 }

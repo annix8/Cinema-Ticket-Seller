@@ -148,7 +148,8 @@ namespace CinemaTickets.Web.Controllers
                     KidsRetirees = kidsRetirees,
                     SeatDtos = seatDtos,
                     Students = students,
-                    TotalPrice = totalPrice
+                    TotalPrice = totalPrice,
+                    ProjectionID = projectionID
                 };
 
                 CacheViewModel.CacheModel(model);

@@ -17,5 +17,10 @@ namespace CinemaTickets.Web.Controllers
             var model = CacheViewModel.svm;
             return View(model);
         }
+
+        public ActionResult BuyTickets(FormCollection data)
+        {
+            return new HttpStatusCodeResult(200, "OK");
+        }
     }
 }

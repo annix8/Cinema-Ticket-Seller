@@ -12,7 +12,7 @@
 
 @section Scripts{
     <script>
-        @{ 
+        @{
             var html = "<table class=\"table table-bordered\"><tr>";
             var counter = 1;
         }
@@ -32,11 +32,30 @@
             html += $"<td seatID=\"{item.SeatID}\" style=\"text-align:center;background-color:{color}\"" + $">{item.Column}</td>";
             counter++;
         }
-        @{ 
+        @{
             html += @"</tr></table>";
             var htmlToPass = Html.Raw(html);
         }
         var tableAsString = `@htmlToPass`;
         $('#seatsTable').append($(tableAsString));
+
+        var seats = [];
+        $('table td').click(function () {
+            var colorOfSeat = this.style.backgroundColor;
+            var tdSeatID = $(this).attr('seatID');
+            if (colorOfSeat === 'red') {
+                return;
+            }
+            var index = seats.indexOf(tdSeatID);
+            if (index > -1) {
+                seats.splice(index, 1);
+                this.style.backgroundColor = 'green';
+            }
+            else {
+                this.style.backgroundColor = 'yellow';
+                seats.push(tdSeatID);
+            }
+            console.log(seats);
+        })
     </script>
-    }
+}
