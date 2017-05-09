@@ -12,5 +12,6 @@ namespace CinemaTickets.Services.Services
         IQueryable<Movie> GetAllMovies();
         Movie GetMovieById(int id);
         void AddMovie(Movie movie);
+        void DeleteMovie(int movieID);
     }
 }

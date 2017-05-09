@@ -123,6 +123,24 @@
             $("input:text").val('');
             $("#description").val('');
             $('#files').val('');
+            $("select option").prop("selected", false);
         }
+
+        var movieID = 0;
+        $('#movieSelect').change(function () {
+            movieID = $(this).find(':selected').attr('movieID');
+        });
+
+        $('#deleteMovieButton').click(function (e) {
+            e.preventDefault();
+
+            $.ajax({
+                url: "@Url.Action("DeleteMovie","Movie")",
+                type: 'POST',
+                data: {movieID: movieID},
+                success: successCallback,
+                error: errorCallback
+            })
+        });
     </script>
 }

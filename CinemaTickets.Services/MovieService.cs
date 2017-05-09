@@ -22,6 +22,13 @@ namespace CinemaTickets.Services
             this._context.SaveChanges();
         }
 
+        public void DeleteMovie(int movieID)
+        {
+            var movieToDelete = this._context.Movies.FirstOrDefault(m => m.MovieID == movieID);
+            this._context.Movies.Remove(movieToDelete);
+            this._context.SaveChanges(); 
+        }
+
         public IQueryable<Movie> GetAllMovies()
         {
             return this._context.Movies;

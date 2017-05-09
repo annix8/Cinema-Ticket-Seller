@@ -44,7 +44,7 @@ namespace CinemaTickets.Web.Controllers
         public ActionResult MovieDetails(int id)
         {
             var movieFromDb = this._movieService.GetMovieById(id);
-            if(movieFromDb == null)
+            if (movieFromDb == null)
             {
                 return View("Error");
             }
@@ -105,6 +105,19 @@ namespace CinemaTickets.Web.Controllers
                 return new HttpStatusCodeResult(200, "OK");
             }
             return new HttpStatusCodeResult(400, "Bad request");
+        }
+
+        public ActionResult DeleteMovie(int movieID)
+        {
+            try
+            {
+                this._movieService.DeleteMovie(movieID);
+            }
+            catch(Exception e)
+            {
+                return new HttpStatusCodeResult(400, "Bad Request");
+            }
+            return new HttpStatusCodeResult(200, "OK");
         }
 
         private bool CheckLoggedInUser()
