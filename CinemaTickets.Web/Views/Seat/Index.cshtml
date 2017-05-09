@@ -5,6 +5,7 @@
 
 <h2>Seat selection</h2>
 <hr />
+<p>* <i>Green: free seats<br />* Red: occupied seats</i></p><hr />
 <div id="screen"><b>Screen</b></div>
 <div id="seatsTable"></div>
 <button id="finishPurchase" class="btn btn-primary btn-lg" style="float:right;margin-top:-10px;">Finish purchase</button>
@@ -82,36 +83,47 @@
 
         $('#finishPurchase').click(function (e) {
             e.preventDefault();
-            if(maxSeatCount != 0){
-                alert("You still have " + maxSeatCount + " tickets to select.");
-                return;
-            }
-            var stringSeats = seats.join(',');
 
-            var fd = new FormData();
-            fd.append("seats", stringSeats);
-            fd.append("kidsRetirees",@Model.KidsRetirees);
-            fd.append("students",@Model.Students);
-            fd.append("adults",@Model.Adults);
-            fd.append("projectionID",@Model.ProjectionID);
+            swal({
+                title: "Are you sure?",
+                text: "You will proceed with the selected seats!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#77c5d5",
+                confirmButtonText: "Yes, proceed!",
+                closeOnConfirm: false
+            },
+            function(){
+                if(maxSeatCount != 0){
+                    swal("Opsss...", "You still have " + maxSeatCount + " tickets to select.", "error");
+                    return;
+                }
+                var stringSeats = seats.join(',');
 
-            $.ajax({
-                url: "@Url.Action("BuyTickets", "Seat")",
-                type: 'POST',
-                processData: false,
-                contentType: false,
-                data: fd,
-                success: successCallback,
-                error: errorCallback
-            })
+                var fd = new FormData();
+                fd.append("seats", stringSeats);
+                fd.append("kidsRetirees",@Model.KidsRetirees);
+                fd.append("students",@Model.Students);
+                fd.append("adults",@Model.Adults);
+                fd.append("projectionID",@Model.ProjectionID);
+
+                $.ajax({
+                    url: "@Url.Action("BuyTickets", "Seat")",
+                    type: 'POST',
+                    processData: false,
+                    contentType: false,
+                    data: fd,
+                    success: successCallback,
+                    error: errorCallback
+                })
+            });
         });
 
         function successCallback(){
-            alert("success");
             window.location.href = "/Ticket/VisualizeTickets";
         }
         function errorCallback(){
-            alert("error")
+            swal("Opsss...", "Something went wrong! :(", "error");
         }
     </script>
 }
