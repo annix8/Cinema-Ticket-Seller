@@ -1,6 +1,6 @@
 ﻿@model CinemaTickets.Web.ViewModels.HallsMoviesViewModel
 @{
-    ViewBag.Title = "CreateProjection";
+    ViewBag.Title = "Create projection";
 }
 
 <div>
@@ -62,46 +62,57 @@
 
         $('#addProjectionButton').click(function (e) {
             e.preventDefault();
-            debugger;
-            var dateOfProjection = $('#movieDate').val();
-            var splittedTime = dateOfProjection.split('-');
-            var year = splittedTime[0];
-            var month = splittedTime[1];
-            var day = splittedTime[2];
-            var hours = $('#hours').val();
-            var minutes = $('#minutes').val();
+
+            swal({
+                title: "Are you sure?",
+                text: "You will add a projection with the inserted data!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#77c5d5",
+                confirmButtonText: "Yes, add it!",
+                closeOnConfirm: false
+            },
+            function () {
+                var dateOfProjection = $('#movieDate').val();
+                var splittedTime = dateOfProjection.split('-');
+                var year = splittedTime[0];
+                var month = splittedTime[1];
+                var day = splittedTime[2];
+                var hours = $('#hours').val();
+                var minutes = $('#minutes').val();
 
 
-            var fd = new FormData();
-            fd.append("hallID", hallID);
-            fd.append("movieID", movieID);
-            fd.append("year", year);
-            fd.append("month", month);
-            fd.append("day", day);
-            fd.append("hours", hours);
-            fd.append("minutes", minutes);
+                var fd = new FormData();
+                fd.append("hallID", hallID);
+                fd.append("movieID", movieID);
+                fd.append("year", year);
+                fd.append("month", month);
+                fd.append("day", day);
+                fd.append("hours", hours);
+                fd.append("minutes", minutes);
 
-            $.ajax({
-                url: "@Url.Action("CreateProjection", "Projection")",
-                type: 'POST',
+                $.ajax({
+                    url: "@Url.Action("CreateProjection", "Projection")",
+                    type: 'POST',
                 processData: false,
                 contentType: false,
                 data: fd,
                 success: successCallback,
                 error: errorCallback
             })
-
-            function successCallback(){
-                alert("success");
-                $('#hallSelect').val('');
-                $('#movieSelect').val('');
-                $('#hours').val('');
-                $('#minutes').val('');
-                $('#movieDate').val('');
-            }
-            function errorCallback(callback){
-                alert("Error: " + callback.statusText);
-            }
+            });  
         })
+
+        function successCallback() {
+            swal("Success!", "Your operation was successful", "success");
+            $('#hallSelect').val('');
+            $('#movieSelect').val('');
+            $('#hours').val('');
+            $('#minutes').val('');
+            $('#movieDate').val('');
+        }
+        function errorCallback(callback) {
+            swal("Opsss...", "Something went wrong! :(", "error");
+        }
     </script>
 }

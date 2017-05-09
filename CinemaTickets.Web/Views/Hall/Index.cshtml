@@ -38,22 +38,36 @@
     <script>
         $('#addHallButton').click(function (e) {
             e.preventDefault();
-            var hallNumber = $('#hallNumberToAdd').val();
 
-            if (hallNumber < 1) {
-                alert("Hall number cannot be less than 1");
-                return;
-            }
+            swal({
+                title: "Are you sure?",
+                text: "You will add the hall number with the inserted data!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#77c5d5",
+                confirmButtonText: "Yes, add it!",
+                closeOnConfirm: false
+            },
+            function () {
+                var hallNumber = Number($('#hallNumberToAdd').val());
 
-            $.ajax({
-                url: "@Url.Action("CreateHall", "Hall")",
-                type: 'POST',
-                data: {
-                    'hallNumber': hallNumber
-                },
-                success: successCallback,
-                error: errorCallback
-            })
+                if (hallNumber < 1) {
+                    sweetAlert("Oops...", "Hall number cannot be less than 1", "error");
+                    return;
+                }
+
+                $.ajax({
+                    url: "@Url.Action("CreateHall", "Hall")",
+                    type: 'POST',
+                    data: {
+                        'hallNumber': hallNumber
+                    },
+                    success: successCallback,
+                    error: errorCallback
+                })
+            });
+
+
         })
 
         var hallToDeleteID = 0;
@@ -65,25 +79,35 @@
         $('#removeHallButton').click(function (e) {
             e.preventDefault();
 
-            $.ajax({
-                url: "@Url.Action("DeleteHall", "Hall")",
-                type: 'POST',
-                data: {
-                    'hallID': hallToDeleteID
-                },
-                success: successCallback,
-                error: errorCallback
-            })
-
+            swal({
+                title: "Are you sure?",
+                text: "You will delete the selected hall number from database!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, delete it!",
+                closeOnConfirm: false
+            },
+            function () {
+                $.ajax({
+                    url: "@Url.Action("DeleteHall", "Hall")",
+                    type: 'POST',
+                    data: {
+                        'hallID': hallToDeleteID
+                    },
+                    success: successCallback,
+                    error: errorCallback
+                })
+            });
         });
 
         function successCallback(callback) {
-            alert("Success");
+            swal("Success!", "Your operation was successful", "success");
             $('#hallNumberToAdd').val('');
             $('#hallToDelete').val('');
         }
         function errorCallback(callback) {
-            alert("Error: " + callback.statusText);
+            swal("Opsss...", "Something went wrong! :(", "error");
         }
     </script>
 }
