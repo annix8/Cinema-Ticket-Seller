@@ -6,9 +6,20 @@
 <h2>Tickets</h2>
 <hr />
 
-@foreach (var item in Model)
-{
-    <div>@item.Price</div>
-}
+<div id="tickets">
+    @foreach (var item in Model)
+    {
+        <div id="ticket">
+            <p>Cinema world</p>
+            <p>Movie title</p>
+            <p>Price</p>
+            <p>date</p>
+            <p>time</p>
+            <p>hall</p>
+            <p>seat - row and column</p>
+            <p>ticketID</p>
+        </div>
+    }
+</div>
 
 
