@@ -10,6 +10,7 @@
 <button id="finishPurchase" class="btn btn-primary btn-lg" style="float:right;margin-top:-10px;">Finish purchase</button>
 
 <div>Total price - @Model.TotalPrice</div>
+<span id="ticketsLeft"></span>
 
 @section Scripts{
     <script>
@@ -41,25 +42,50 @@
         $('#seatsTable').append($(tableAsString));
 
         var seats = [];
+        var maxSeatCount = @Model.Adults + @Model.KidsRetirees + @Model.Students;
         $('table td').click(function () {
             var colorOfSeat = this.style.backgroundColor;
             var tdSeatID = $(this).attr('seatID');
             if (colorOfSeat === 'red') {
                 return;
             }
+
+            if(maxSeatCount === 0){
+                seats = [];
+                $('table tr').each(function() {
+                    $.each(this.cells, function(){
+                        if(this.style.backgroundColor == 'yellow'){
+                            this.style.backgroundColor = 'green';
+                        }
+                    });
+                });
+                maxSeatCount = @Model.Adults + @Model.KidsRetirees + @Model.Students;
+                $('#ticketsLeft').empty();
+                $('#ticketsLeft').append(maxSeatCount + " tickets left to choose.");
+                return;
+            }
+
             var index = seats.indexOf(tdSeatID);
             if (index > -1) {
-                seats.splice(index, 1);
                 this.style.backgroundColor = 'green';
+                seats.splice(index, 1);
+                maxSeatCount++;
             }
             else {
                 this.style.backgroundColor = 'yellow';
                 seats.push(tdSeatID);
+                maxSeatCount--;
             }
+            $('#ticketsLeft').empty();
+            $('#ticketsLeft').append(maxSeatCount + " tickets left to choose.");
         })
 
         $('#finishPurchase').click(function (e) {
             e.preventDefault();
+            if(maxSeatCount != 0){
+                alert("You still have " + maxSeatCount + " tickets to select.");
+                return;
+            }
             var stringSeats = seats.join(',');
 
             var fd = new FormData();
