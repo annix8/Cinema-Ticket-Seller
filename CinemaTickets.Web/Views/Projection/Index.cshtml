@@ -78,12 +78,14 @@
         var studentsPrice = @CinemaTickets.Web.Constants.TicketPrices.students;
         var adultsPrice = @CinemaTickets.Web.Constants.TicketPrices.adults;
         var projectionID = 0;
+        var projectionTime = '';
         var kidsRetirees = 0;
         var students = 0;
         var adults = 0;
 
         $('#projectionSelect').change(function () {
             projectionID = $(this).find(':selected').attr('projectionID');
+            projectionTime = $(this).find(':selected').val();
         });
 
         $('#kidsRetirees').change(function () {
@@ -127,6 +129,7 @@
                 fd.append("adults", adults);
                 fd.append("projectionID", projectionID);
                 fd.append("totalPrice", totalPriceOfTickets);
+                fd.append("projectionTime",projectionTime);
 
                 $.ajax({
                     url: "@Url.Action("RedirectProjectionData", "Projection")",

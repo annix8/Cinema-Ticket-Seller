@@ -9,17 +9,15 @@
 <div id="tickets">
     @foreach (var item in Model)
     {
-        <div id="ticket">
-            <p>Cinema world</p>
-            <p>Movie title</p>
-            <p>Price</p>
-            <p>date</p>
-            <p>time</p>
-            <p>hall</p>
-            <p>seat - row and column</p>
-            <p>ticketID</p>
+        <div id="ticket" style="border:1px solid black;margin-bottom:10px;padding:15px;">
+            <h4>Cinema world</h4>
+            <p id="movieTitle"><b>Movie title</b> - @Session["movieTitle"]</p>
+            <p id="ticketPrice"><b>Ticket price</b> - @item.Price</p>
+            <p id="date"><b>Date</b> - @Session["ticketDate"]</p>
+            <p id="time"><b>Hour</b> - @Session["ticketHour"]</p>
+            <p id="hallNumber"><b>Hall number</b> - @Session["hallNumber"]</p>
+            <p id="seat">seat - row and column</p>
+            <p><b>Ticket ID</b> - @item.TicketID</p>
         </div>
     }
 </div>
-
-

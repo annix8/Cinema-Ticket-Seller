@@ -33,6 +33,8 @@ namespace CinemaTickets.Web.Controllers
                 .OrderBy(p => p.TimeOfProjection)
                 .ToList();
 
+            Session["movieTitle"] = movie.Title;
+
             ViewBag.MovieTitle = movie.Title;
             return View(projectionForSelectedMovie);
         }
@@ -113,11 +115,16 @@ namespace CinemaTickets.Web.Controllers
                 var adults = int.Parse(data["adults"]);
                 var projectionID = int.Parse(data["projectionID"]);
                 var totalPrice = decimal.Parse(data["totalPrice"]);
+                var projectionTime = data["projectionTime"].Split(' ');
+                Session["ticketDate"] = projectionTime[0];
+                Session["ticketHour"] = projectionTime[1] + projectionTime[2];
 
                 var seatDtos = new List<SeatDTO>();
                 using (var context = new CinemaTicketsDbContext())
                 {
                     var projection = context.Projections.FirstOrDefault(p => p.ProjectionID == projectionID);
+                    var hallNumber = context.Halls.FirstOrDefault(h => h.HallID == projection.HallID).HallNumber;
+                    Session["hallNumber"] = hallNumber;
                     var tickets = projection.Tickets.ToList();
 
                     foreach (var ticket in tickets)
@@ -151,7 +158,6 @@ namespace CinemaTickets.Web.Controllers
                     TotalPrice = totalPrice,
                     ProjectionID = projectionID
                 };
-
                 CacheViewModel.CacheModel(model);
             }
 
