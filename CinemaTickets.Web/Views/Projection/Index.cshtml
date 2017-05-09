@@ -11,7 +11,12 @@
     <h3>There are no projections for this movie available.</h3>
     return;
 }
-
+<p>
+    * <i>
+        When you are choosing ticket types click "Confirm tickets" button in order to confirm the tickets and see the final price. Afterwards click "Continue to seats selection"
+        button to select the seats for the projection.
+    </i>
+</p><hr />
 <form>
     <div class="form-group">
         <label for="projectionSelect">Select a projection</label>
@@ -24,7 +29,7 @@
         </select>
     </div>
     <p><i>Select ticket type below:</i></p>
-    <div style="border:1px solid black;border-radius:10px;width:25%;margin-bottom:10px;">
+    <div id="ticketTypes">
         <div class="form-group">
             <label for="kidsRetirees" style="padding-left:10px;">For kids/retirees: @CinemaTickets.Web.Constants.TicketPrices.kidsRetirees</label>
             <select class="form-control" id="kidsRetirees">
@@ -61,7 +66,7 @@
     </div>
     <div class="form-group">
         <label for="totalPrice">Total price</label>
-        <input class="form-control" type="text" name="totalPriceBox" id="totalPriceBox" disabled value="0"/>
+        <input class="form-control" type="text" name="totalPriceBox" id="totalPriceBox" disabled value="0" />
     </div>
     <button id="selectSeatsButton" class="btn btn-primary">Continue to seats selection...</button>
 </form>
@@ -104,30 +109,42 @@
 
         $('#selectSeatsButton').click(function (e) {
             e.preventDefault();
-            var totalPriceOfTickets = $('#totalPriceBox').val().slice(0,-1);
-            var fd = new FormData();
-            fd.append("kidsRetirees", kidsRetirees);
-            fd.append("students", students);
-            fd.append("adults", adults);
-            fd.append("projectionID", projectionID);
-            fd.append("totalPrice", totalPriceOfTickets);
 
-            $.ajax({
-                url: "@Url.Action("RedirectProjectionData", "Projection")",
-                type: 'POST',
-                processData: false,
-                contentType: false,
-                data: fd,
-                success: successCallback,
-                error: errorCallback
-            })
+            swal({
+                title: "Are you sure?",
+                text: "You will proceed with the selected data!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#77c5d5",
+                confirmButtonText: "Yes, proceed!",
+                closeOnConfirm: false
+            },
+            function(){
+                var totalPriceOfTickets = $('#totalPriceBox').val().slice(0,-1);
+                var fd = new FormData();
+                fd.append("kidsRetirees", kidsRetirees);
+                fd.append("students", students);
+                fd.append("adults", adults);
+                fd.append("projectionID", projectionID);
+                fd.append("totalPrice", totalPriceOfTickets);
+
+                $.ajax({
+                    url: "@Url.Action("RedirectProjectionData", "Projection")",
+                    type: 'POST',
+                    processData: false,
+                    contentType: false,
+                    data: fd,
+                    success: successCallback,
+                    error: errorCallback
+                })
+            });
         })
 
         function successCallback() {
             window.location.href = "/Seat/Index";
         }
         function errorCallback() {
-            alert("error");
+            swal("Opsss...", "Something went wrong! :(", "error");
         }
     </script>
 }

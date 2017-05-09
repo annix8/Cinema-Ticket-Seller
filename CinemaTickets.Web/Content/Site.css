@@ -41,3 +41,10 @@ textarea {
 td{
     border-radius:5px;
 }
+
+#ticketTypes{
+    border:1px solid black;
+    border-radius:10px;
+    width:25%;margin-bottom:10px;
+    padding:15px;
+}
