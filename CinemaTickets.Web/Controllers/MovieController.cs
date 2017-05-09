@@ -107,6 +107,7 @@ namespace CinemaTickets.Web.Controllers
             return new HttpStatusCodeResult(400, "Bad request");
         }
 
+        [HttpPost]
         public ActionResult DeleteMovie(int movieID)
         {
             try

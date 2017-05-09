@@ -13,5 +13,6 @@ namespace CinemaTickets.Services.Services
         void AddHall(Hall hall);
         Hall GetHallById(int id);
         Hall GetHallByHallNumber(int hallNumber);
+        void DeleteHall(int id);
     }
 }

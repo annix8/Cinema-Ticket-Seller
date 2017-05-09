@@ -56,9 +56,31 @@
             })
         })
 
+        var hallToDeleteID = 0;
+
+        $('#hallToDelete').change(function () {
+            hallToDeleteID = $(this).find(':selected').attr('hallID');
+        });
+
+        $('#removeHallButton').click(function (e) {
+            e.preventDefault();
+
+            $.ajax({
+                url: "@Url.Action("DeleteHall", "Hall")",
+                type: 'POST',
+                data: {
+                    'hallID': hallToDeleteID
+                },
+                success: successCallback,
+                error: errorCallback
+            })
+
+        });
+
         function successCallback(callback) {
-            alert("Success: Hall added to database");
+            alert("Success");
             $('#hallNumberToAdd').val('');
+            $('#hallToDelete').val('');
         }
         function errorCallback(callback) {
             alert("Error: " + callback.statusText);

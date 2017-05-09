@@ -39,7 +39,7 @@ namespace CinemaTickets.Web.Controllers
 
             try
             {
-                using(var context = new CinemaTicketsDbContext())
+                using (var context = new CinemaTicketsDbContext())
                 {
                     for (int row = 1; row <= 10; row++)
                     {
@@ -56,15 +56,29 @@ namespace CinemaTickets.Web.Controllers
                     }
                     context.SaveChanges();
                 }
-                
+
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return new HttpStatusCodeResult(400, e.Message);
 
             }
 
             return new HttpStatusCodeResult(200, "Success");
+        }
+        [HttpPost]
+        public ActionResult DeleteHall(int hallID)
+        {
+            try
+            {
+                this._hallService.DeleteHall(hallID);
+            }
+            catch(Exception e)
+            {
+                return new HttpStatusCodeResult(400, "OK");
+            }
+
+            return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
         }
     }
 }
