@@ -80,51 +80,65 @@
 
         $("#addMovieButton").click(function (e) {
             e.preventDefault();
-            var file = document.getElementById('files').files[0];
-            if (file == undefined) {
-                alert("You must select a picture for the movie!");
-                return;
-            }
 
-            var filenameExtension = file.name.split('.').pop();
-            var allowedPictureFormats = ['jpeg', 'gif', 'bmp', 'png', 'jpg'];
+            swal({
+                title: "Are you sure?",
+                text: "You will add a movie with this data!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#77c5d5",
+                confirmButtonText: "Yes, add it!",
+                closeOnConfirm: false
+            },
+            function () {
+                var file = document.getElementById('files').files[0];
+                if (file == undefined) {
+                    sweetAlert("Oops...", "You must select a picture for the movie", "error");
+                    return;
+                }
 
-            if (!allowedPictureFormats.includes(filenameExtension)) {
-                alert("Invalid file format: " + filenameExtension)
-                return;
-            }
-            var fd = new FormData();
+                var filenameExtension = file.name.split('.').pop();
+                var allowedPictureFormats = ['jpeg', 'gif', 'bmp', 'png', 'jpg'];
 
-            fd.append("files", file);
-            fd.append("title", $('#title').val());
-            fd.append("rating", $('#rating').val());
-            fd.append("language", $('#language').val());
-            fd.append("minutes", $('#minutes').val());
-            fd.append("producer", $('#producer').val());
-            fd.append("description", $('#description').val());
-            fd.append("genre", $('#genre').val());
+                if (!allowedPictureFormats.includes(filenameExtension)) {
+                    sweetAlert("Oops...", "Invalid file format. Valid formats: jpeg, gif, bmp, png, jpg", "error");
+                    return;
+                }
+                var fd = new FormData();
 
-            $.ajax({
-                url: "@Url.Action("AddMovie","Movie")",
-                type: 'POST',
-                processData: false,
-                contentType: false,
-                data: fd,
-                success: successCallback,
-                error: errorCallback
-            })
+                fd.append("files", file);
+                fd.append("title", $('#title').val());
+                fd.append("rating", $('#rating').val());
+                fd.append("language", $('#language').val());
+                fd.append("minutes", $('#minutes').val());
+                fd.append("producer", $('#producer').val());
+                fd.append("description", $('#description').val());
+                fd.append("genre", $('#genre').val());
+
+                $.ajax({
+                    url: "@Url.Action("AddMovie","Movie")",
+                    type: 'POST',
+                    processData: false,
+                    contentType: false,
+                    data: fd,
+                    success: successCallback,
+                    error: errorCallback
+                })
+            });
+
+
         })
 
         function errorCallback() {
-            alert("error");
+            swal("Opsss...", "Something went wrong! :(", "error");
         }
         function successCallback() {
-            alert("success");
             $("input:text").val('');
             $("#description").val('');
             $('#files').val('');
             $('#minutes').val('');
             $("select option").prop("selected", false);
+            swal("Success!", "Your operation was successful", "success");
         }
 
         var movieID = 0;
@@ -135,13 +149,24 @@
         $('#deleteMovieButton').click(function (e) {
             e.preventDefault();
 
-            $.ajax({
-                url: "@Url.Action("DeleteMovie","Movie")",
-                type: 'POST',
-                data: {movieID: movieID},
-                success: successCallback,
-                error: errorCallback
-            })
+            swal({
+                title: "Are you sure?",
+                text: "You will delete the selected movie!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, delete it!",
+                closeOnConfirm: false
+            },
+            function () {
+                $.ajax({
+                    url: "@Url.Action("DeleteMovie","Movie")",
+                    type: 'POST',
+                    data: { movieID: movieID },
+                    success: successCallback,
+                    error: errorCallback
+                })
+            });
         });
     </script>
 }
