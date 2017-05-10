@@ -10,11 +10,12 @@
 <div id="seatsTable"></div>
 <button id="finishPurchase" class="btn btn-primary btn-lg" style="float:right;margin-top:-10px;">Finish purchase</button>
 
-<div>Total price - @Model.TotalPrice</div>
-<span id="ticketsLeft"></span>
+<div>Total price - @Model.TotalPrice$</div>
+<span id="ticketsLeft" style="font-weight:bold;"></span>
 
 @section Scripts{
     <script>
+        //table of seats is generated via c# string which is then passed to javascript to be rendered on screen
         @{
             var html = "<table class=\"table table-bordered\"><tr>";
             var counter = 1;
@@ -26,13 +27,14 @@
             {
                 color = "red";
             }
-
+            
+            //11 is the magic number to point that there cannnot be more than 10 columns in a row. Think of how this could be dynamic
             if(counter == 11)
             {
                 html += @"</tr><tr>";
                 counter = 1;
             }
-            html += $"<td seatID=\"{item.SeatID}\" style=\"text-align:center;background-color:{color};cursor:pointer;\"" + $">{item.Column}</td>";
+            html += $"<td seatID=\"{item.SeatID}\" style=\"text-align:center;background-color:{color};cursor:pointer;\"" + $">{item.Row},{item.Column}</td>";
             counter++;
         }
         @{
@@ -44,6 +46,13 @@
 
         var seats = [];
         var maxSeatCount = @Model.Adults + @Model.KidsRetirees + @Model.Students;
+
+        //on dom ready
+        $(document).ready(function(){
+            $('#ticketsLeft').append(maxSeatCount + " tickets left to choose.");
+        });
+
+        //seat click selection
         $('table td').click(function () {
             var colorOfSeat = this.style.backgroundColor;
             var tdSeatID = $(this).attr('seatID');
@@ -81,6 +90,7 @@
             $('#ticketsLeft').append(maxSeatCount + " tickets left to choose.");
         })
 
+        //confirm seats
         $('#finishPurchase').click(function (e) {
             e.preventDefault();
 
