@@ -6,6 +6,7 @@ using CinemaTickets.Web.Dtos;
 using CinemaTickets.Web.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -52,23 +53,33 @@ namespace CinemaTickets.Web.Controllers
 
             using (var context = new CinemaTicketsDbContext())
             {
-                var tickets = context.Projections.FirstOrDefault(p => p.ProjectionID == projectionID).Tickets.ToList();
-                var counter = 0;
-                foreach (var ticket in tickets)
+                try
                 {
-                    foreach (var seat in seats)
+                    var tickets = context.Projections.FirstOrDefault(p => p.ProjectionID == projectionID).Tickets.ToList();
+                    var counter = 0;
+                    var usernameEmail = (string)Session["usernameEmail"];
+                    foreach (var ticket in tickets)
                     {
-                        if (ticket.SeatID == seat)
+                        foreach (var seat in seats)
                         {
-                            var currentSeat = ticket.Seat;
-                            ticket.IsSold = true;
-                            ticket.Price = ticketTypesPrices[counter];
-                            counter++;
-                            ticketsBought[ticket] = new int[] {currentSeat.Row, currentSeat.Column };
+                            if (ticket.SeatID == seat)
+                            {
+                                var userSoldCurrentTicket = context.Employees.FirstOrDefault(e => e.Email == usernameEmail);
+                                var currentSeat = ticket.Seat;
+                                ticket.IsSold = true;
+                                ticket.Price = ticketTypesPrices[counter];
+                                ticket.Employee = userSoldCurrentTicket;
+                                counter++;
+                                ticketsBought[ticket] = new int[] { currentSeat.Row, currentSeat.Column };
+                            }
                         }
                     }
+                    context.SaveChanges();
                 }
-                context.SaveChanges();
+                catch(OptimisticConcurrencyException ex)
+                {
+
+                }
             }
             CacheViewModel.CacheModel(ticketsBought);
             return new HttpStatusCodeResult(200, "OK");

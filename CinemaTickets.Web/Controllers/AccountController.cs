@@ -94,8 +94,11 @@ namespace CinemaTickets.Web.Controllers
                             {
                                 Email = model.Email,
                                 IsAdmin = false,
+                                FirstName = "Jon",
+                                LastName = "Doe"
                             });
                         }
+                        Session["usernameEmail"] = model.Email;
                         return RedirectToLocal(returnUrl);
                     }
                 case SignInStatus.LockedOut:

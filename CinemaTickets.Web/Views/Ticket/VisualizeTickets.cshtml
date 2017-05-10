@@ -18,6 +18,7 @@
             <p id="hallNumber"><b>Hall number</b> - @Session["hallNumber"]</p>
             <p id="seat"><b>Row</b> - @item.Value[0]  <b>Column</b> - @item.Value[1]</p>
             <p><b>Ticket ID</b> - @item.Key.TicketID</p>
+            <p><b>Tickets sold by cashier</b>: @item.Key.Employee.FirstName @item.Key.Employee.LastName</p>
         </div>
     }
 </div>
