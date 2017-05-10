@@ -29,7 +29,7 @@ namespace CinemaTickets.Web.Controllers
             var seats = data["seats"].Split(',').Select(int.Parse).ToArray();
 
             List<decimal> ticketTypesPrices = new List<decimal>();
-            List<Ticket> boughtTickets = new List<Ticket>();
+            var ticketsBought = new Dictionary<Ticket, int[]>();
 
             if (kidsRetirees != 0)
                 for (int i = 1; i <= kidsRetirees; i++)
@@ -60,16 +60,17 @@ namespace CinemaTickets.Web.Controllers
                     {
                         if (ticket.SeatID == seat)
                         {
+                            var currentSeat = ticket.Seat;
                             ticket.IsSold = true;
                             ticket.Price = ticketTypesPrices[counter];
                             counter++;
-                            boughtTickets.Add(ticket);
+                            ticketsBought[ticket] = new int[] {currentSeat.Row, currentSeat.Column };
                         }
                     }
                 }
                 context.SaveChanges();
             }
-            CacheViewModel.CacheModel(boughtTickets);
+            CacheViewModel.CacheModel(ticketsBought);
             return new HttpStatusCodeResult(200, "OK");
         }
     }
