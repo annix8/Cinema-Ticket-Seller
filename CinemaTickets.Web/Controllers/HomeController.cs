@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using Microsoft.AspNet.Identity;
+using System.Web.Mvc;
 
 namespace CinemaTickets.Web.Controllers
 {

@@ -50,9 +50,9 @@
             },
             function () {
                 var hallNumber = Number($('#hallNumberToAdd').val());
-
+                console.log(hallNumber)
                 if (hallNumber < 1) {
-                    sweetAlert("Oops...", "Hall number cannot be less than 1", "error");
+                    sweetAlert("Oops...", "Hall number cannot be different than a number or less than 1", "error");
                     return;
                 }
 
@@ -107,7 +107,7 @@
             $('#hallToDelete').val('');
         }
         function errorCallback(callback) {
-            swal("Opsss...", "Something went wrong! :(", "error");
+            swal("Opsss...", callback.statusText, "error");
         }
     </script>
 }

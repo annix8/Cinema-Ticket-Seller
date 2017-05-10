@@ -75,7 +75,7 @@ namespace CinemaTickets.Web.Controllers
             }
             catch(Exception e)
             {
-                return new HttpStatusCodeResult(400, "OK");
+                return new HttpStatusCodeResult(400, "Something went wrong :(");
             }
 
             return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
