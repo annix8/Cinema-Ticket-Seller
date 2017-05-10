@@ -82,6 +82,7 @@
         var kidsRetirees = 0;
         var students = 0;
         var adults = 0;
+        var confirmedTickets = false;
 
         $('#projectionSelect').change(function () {
             projectionID = $(this).find(':selected').attr('projectionID');
@@ -107,10 +108,19 @@
             var adultsTotalPrice = adultsPrice * adults;
             var totalTicketsPrice = Number(kidsRetireesTotalPrice + studentsTotalPrice + adultsTotalPrice).toFixed(2);
             $('#totalPriceBox').val(totalTicketsPrice + "$");
+            confirmedTickets = true;
         });
 
         $('#selectSeatsButton').click(function (e) {
             e.preventDefault();
+            if(projectionID == 0 || (kidsRetirees == 0 && students == 0 && adults == 0)){
+                swal("Ooopsss...","You haven't selected some of the fields","error");
+                return;
+            }
+            else if(!confirmedTickets){
+                swal("Ooopsss...","You must confirm the tickets","error");
+                return;
+            }
 
             swal({
                 title: "Are you sure?",

@@ -9,6 +9,7 @@ using CinemaTickets.Web.Models;
 using CinemaTickets.DataModel;
 using System.Linq;
 using CinemaTickets.DataModel.Models;
+using System.Web;
 
 namespace CinemaTickets.Web
 {
@@ -39,7 +40,7 @@ namespace CinemaTickets.Web
                 }
             });
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
-
+            
             // Enables the application to temporarily store user information when they are verifying the second factor in the two-factor authentication process.
             app.UseTwoFactorSignInCookie(DefaultAuthenticationTypes.TwoFactorCookie, TimeSpan.FromMinutes(5));
 
