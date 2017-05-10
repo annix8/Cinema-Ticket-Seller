@@ -50,7 +50,6 @@
             },
             function () {
                 var hallNumber = Number($('#hallNumberToAdd').val());
-                console.log(hallNumber)
                 if (hallNumber < 1) {
                     sweetAlert("Oops...", "Hall number cannot be different than a number or less than 1", "error");
                     return;
