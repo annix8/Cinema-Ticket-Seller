@@ -10,7 +10,9 @@
     @foreach (KeyValuePair<CinemaTickets.DataModel.Models.Ticket,int[]> item in Model)
     {
         <div id="ticket" style="border:1px solid black;margin-bottom:10px;padding:15px;">
-            <h4 style="text-align:center;">Cinema world</h4>
+            <hr id="ticket-lines"/>
+            <h3 style="text-align:center;">Cinema world</h3>
+            <hr id="ticket-lines" />
             <p id="movieTitle"><b>Movie title</b> - @Session["movieTitle"]</p>
             <p id="ticketPrice"><b>Ticket price</b> - @item.Key.Price</p>
             <p id="date"><b>Date</b> - @Session["ticketDate"]</p>
@@ -19,6 +21,7 @@
             <p id="seat"><b>Row</b> - @item.Value[0]  <b>Column</b> - @item.Value[1]</p>
             <p><b>Ticket ID</b> - @item.Key.TicketID</p>
             <p><b>Tickets sold by cashier</b>: @item.Key.Employee.FirstName @item.Key.Employee.LastName</p>
+            <hr id="ticket-lines" />
         </div>
     }
 </div>

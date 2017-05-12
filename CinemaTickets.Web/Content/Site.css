@@ -48,3 +48,12 @@ td{
     width:25%;margin-bottom:10px;
     padding:15px;
 }
+#ticket-lines{
+    color: orange;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-width: 7px;
+    border-color: orange;
+}
