@@ -3,7 +3,10 @@
     ViewBag.Title = "VisualizeTickets";
 }
 
+<div>
 <h2>Tickets</h2>
+<button class="btn-lg btn-primary" onclick="@("window.location.href='" + @Url.Action("Index", "Home") + "'");" style="float:right;margin-top:-50px;">Back to home page</button>
+</div>
 <hr />
 
 <div id="tickets">
