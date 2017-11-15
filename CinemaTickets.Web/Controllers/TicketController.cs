@@ -9,6 +9,7 @@ namespace CinemaTickets.Web.Controllers
 {
     public class TicketController : Controller
     {
+        [Authorize]
         public ActionResult VisualizeTickets()
         {
             var model = CacheViewModel.tickets;

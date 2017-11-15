@@ -24,6 +24,7 @@ namespace CinemaTickets.Web.Controllers
             this._hallService = hallService;
         }
 
+        [Authorize]
         public ActionResult Index(Movie movie)
         {
             var projectionForSelectedMovie = this._projectionService
@@ -38,6 +39,7 @@ namespace CinemaTickets.Web.Controllers
             return View(projectionForSelectedMovie);
         }
 
+        [Authorize]
         public ActionResult CreateProjection()
         {
             var allMovies = this._movieService.GetAllMovies().ToList();
@@ -50,6 +52,8 @@ namespace CinemaTickets.Web.Controllers
             };
             return View(model);
         }
+
+        [Authorize]
         [HttpPost]
         public ActionResult CreateProjection(FormCollection data)
         {
@@ -104,6 +108,7 @@ namespace CinemaTickets.Web.Controllers
             return new HttpStatusCodeResult(200, "OK");
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult RedirectProjectionData(FormCollection data)
         {

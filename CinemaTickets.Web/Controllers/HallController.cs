@@ -64,6 +64,8 @@ namespace CinemaTickets.Web.Controllers
 
             return new HttpStatusCodeResult(200, "Success");
         }
+
+        [Authorize]
         [HttpPost]
         public ActionResult DeleteHall(int hallID)
         {

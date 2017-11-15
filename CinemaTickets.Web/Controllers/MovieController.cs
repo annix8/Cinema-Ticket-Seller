@@ -21,8 +21,8 @@ namespace CinemaTickets.Web.Controllers
             this._employeeService = employeeService;
             this._imageService = imageService;
         }
-
-
+        
+        [Authorize]
         public ActionResult Index()
         {
             var movies = this._movieService.GetAllMovies().ToList();
@@ -35,6 +35,7 @@ namespace CinemaTickets.Web.Controllers
             return View(model);
         }
 
+        [Authorize]
         public ActionResult MovieDetails(int id)
         {
             var movieFromDb = this._movieService.GetMovieById(id);

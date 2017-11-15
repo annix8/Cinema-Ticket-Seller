@@ -15,12 +15,14 @@ namespace CinemaTickets.Web.Controllers
 {
     public class SeatController : Controller
     {
+        [Authorize]
         public ActionResult Index()
         {
             var model = CacheViewModel.svm;
             return View(model);
         }
 
+        [Authorize]
         public ActionResult BuyTickets(FormCollection data)
         {
             var kidsRetirees = int.Parse(data["kidsRetirees"]);
