@@ -72,11 +72,11 @@
     <Compile Include="MovieService.cs" />
     <Compile Include="ProjectionService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\IEmployeeService.cs" />
-    <Compile Include="Services\IHallService.cs" />
-    <Compile Include="Services\IImageService.cs" />
-    <Compile Include="Services\IMovieService.cs" />
-    <Compile Include="Services\IProjectionService.cs" />
+    <Compile Include="Contracts\IEmployeeService.cs" />
+    <Compile Include="Contracts\IHallService.cs" />
+    <Compile Include="Contracts\IImageService.cs" />
+    <Compile Include="Contracts\IMovieService.cs" />
+    <Compile Include="Contracts\IProjectionService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CinemaTickets.DataModel\CinemaTickets.DataModel.csproj">

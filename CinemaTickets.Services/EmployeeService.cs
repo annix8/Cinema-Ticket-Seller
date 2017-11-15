@@ -1,4 +1,4 @@
-﻿using CinemaTickets.Services.Services;
+﻿using CinemaTickets.Services.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +12,9 @@ namespace CinemaTickets.Services
     public class EmployeeService : IEmployeeService
     {
         private CinemaTicketsDbContext _context;
-        public EmployeeService()
+        public EmployeeService(CinemaTicketsDbContext ctx)
         {
-            _context = new CinemaTicketsDbContext();
+            _context = ctx;
         }
         public void AddEmployee(Employee employee)
         {

@@ -1,11 +1,8 @@
 ﻿using CinemaTickets.DataModel;
 using CinemaTickets.DataModel.Models;
-using CinemaTickets.Services;
-using CinemaTickets.Services.Services;
+using CinemaTickets.Services.Contracts;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace CinemaTickets.Web.Controllers
@@ -13,9 +10,9 @@ namespace CinemaTickets.Web.Controllers
     public class HallController : Controller
     {
         private IHallService _hallService;
-        public HallController()
+        public HallController(IHallService hallService)
         {
-            this._hallService = new HallService();
+            this._hallService = hallService;
         }
         public ActionResult Index()
         {
@@ -23,6 +20,7 @@ namespace CinemaTickets.Web.Controllers
             return View(allHalls);
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult CreateHall(int hallNumber)
         {
@@ -73,7 +71,7 @@ namespace CinemaTickets.Web.Controllers
             {
                 this._hallService.DeleteHall(hallID);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return new HttpStatusCodeResult(400, "Something went wrong :(");
             }

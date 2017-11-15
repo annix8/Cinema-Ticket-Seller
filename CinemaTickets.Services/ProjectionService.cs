@@ -1,4 +1,4 @@
-﻿using CinemaTickets.Services.Services;
+﻿using CinemaTickets.Services.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +12,9 @@ namespace CinemaTickets.Services
     public class ProjectionService : IProjectionService
     {
         private CinemaTicketsDbContext _context;
-        public ProjectionService()
+        public ProjectionService(CinemaTicketsDbContext ctx)
         {
-            this._context = new CinemaTicketsDbContext();
+            this._context = ctx;
         }
         public void AddProjection(Projection projection)
         {

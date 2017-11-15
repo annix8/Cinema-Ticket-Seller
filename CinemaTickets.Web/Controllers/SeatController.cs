@@ -57,7 +57,7 @@ namespace CinemaTickets.Web.Controllers
                 {
                     var tickets = context.Projections.FirstOrDefault(p => p.ProjectionID == projectionID).Tickets.ToList();
                     var counter = 0;
-                    var usernameEmail = (string)Session["usernameEmail"];
+                    var usernameEmail = User.Identity.Name;
                     foreach (var ticket in tickets)
                     {
                         foreach (var seat in seats)

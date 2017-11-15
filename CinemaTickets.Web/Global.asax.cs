@@ -16,6 +16,12 @@ namespace CinemaTickets.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            Bootstrapper.Initialise();
+        }
+        protected void Application_EndRequest()
+        {   //here breakpoint
+            // under debug mode you can find the exceptions at code: this.Context.AllErrors
         }
     }
 }

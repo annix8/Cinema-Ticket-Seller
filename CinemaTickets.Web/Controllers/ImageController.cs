@@ -1,6 +1,6 @@
 ﻿using CinemaTickets.DataModel.Models;
 using CinemaTickets.Services;
-using CinemaTickets.Services.Services;
+using CinemaTickets.Services.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +13,9 @@ namespace CinemaTickets.Web.Controllers
     public class ImageController : Controller
     {
         private IImageService _imageService;
-        public ImageController()
+        public ImageController(IImageService imageService)
         {
-            this._imageService = new ImageService();
+            this._imageService = imageService;
         }
         // GET: Image
         public ActionResult RenderImage(int id)

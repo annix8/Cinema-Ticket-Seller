@@ -11,7 +11,7 @@ using Microsoft.Owin.Security;
 using CinemaTickets.Web.Models;
 using CinemaTickets.DataModel;
 using CinemaTickets.DataModel.Models;
-using CinemaTickets.Services.Services;
+using CinemaTickets.Services.Contracts;
 using CinemaTickets.Services;
 
 namespace CinemaTickets.Web.Controllers
@@ -25,14 +25,14 @@ namespace CinemaTickets.Web.Controllers
 
         public AccountController()
         {
-            this._employeeService = new EmployeeService();
+            //for some reason the below constructor is not called and DI cannot be implied
+            //this is temporary solution of using the service
+            _employeeService = new EmployeeService(new CinemaTicketsDbContext());
         }
-
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
-            this._employeeService = new EmployeeService();
         }
 
         public ApplicationSignInManager SignInManager
@@ -98,7 +98,6 @@ namespace CinemaTickets.Web.Controllers
                                 LastName = "Doe"
                             });
                         }
-                        Session["usernameEmail"] = model.Email;
                         return RedirectToLocal(returnUrl);
                     }
                 case SignInStatus.LockedOut:

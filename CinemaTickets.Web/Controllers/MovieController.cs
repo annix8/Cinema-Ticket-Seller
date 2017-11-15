@@ -1,12 +1,9 @@
 ﻿using CinemaTickets.DataModel.Models;
-using CinemaTickets.Services;
-using CinemaTickets.Services.Services;
+using CinemaTickets.Services.Contracts;
 using CinemaTickets.Web.ViewModels;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace CinemaTickets.Web.Controllers
@@ -16,21 +13,18 @@ namespace CinemaTickets.Web.Controllers
         private IMovieService _movieService;
         private IEmployeeService _employeeService;
         private IImageService _imageService;
-        public string username { get { return HttpContext.User.Identity.Name; } set { } }
-        public MovieController()
+
+        public MovieController(IMovieService movieService, IEmployeeService employeeService,
+            IImageService imageService)
         {
-            this._movieService = new MovieService();
-            this._employeeService = new EmployeeService();
-            this._imageService = new ImageService();
+            this._movieService = movieService;
+            this._employeeService = employeeService;
+            this._imageService = imageService;
         }
-        // GET: Movie
+
+
         public ActionResult Index()
         {
-            if (!CheckLoggedInUser())
-            {
-                return RedirectToAction("Login", "Account");
-            }
-
             var movies = this._movieService.GetAllMovies().ToList();
 
             var model = new MoviesViewModel()
@@ -53,17 +47,14 @@ namespace CinemaTickets.Web.Controllers
             return View(movieFromDb);
         }
 
+        [Authorize]
         public ActionResult MoviePanel()
         {
-            if (!CheckLoggedInUser())
-            {
-                return RedirectToAction("Login", "Account");
-            }
-
-            var userFromDb = this._employeeService.GetEmployeeByEmail(username);
+            var userFromDb = this._employeeService.GetEmployeeByEmail(User.Identity.Name);
             return View(userFromDb);
         }
 
+        [Authorize]
         public ActionResult AddMovie()
         {
             var movies = this._movieService.GetAllMovies().ToList();
@@ -74,6 +65,8 @@ namespace CinemaTickets.Web.Controllers
 
             return View(model);
         }
+
+        [Authorize]
         [HttpPost]
         public ActionResult AddMovie(FormCollection data)
         {
@@ -107,6 +100,7 @@ namespace CinemaTickets.Web.Controllers
             return new HttpStatusCodeResult(400, "Bad request");
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult DeleteMovie(int movieID)
         {
@@ -114,20 +108,11 @@ namespace CinemaTickets.Web.Controllers
             {
                 this._movieService.DeleteMovie(movieID);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return new HttpStatusCodeResult(400, "Bad Request");
             }
             return new HttpStatusCodeResult(200, "OK");
-        }
-
-        private bool CheckLoggedInUser()
-        {
-            if (username == "")
-            {
-                return false;
-            }
-            return true;
         }
     }
 }

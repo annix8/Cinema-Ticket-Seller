@@ -1,14 +1,12 @@
 ﻿using CinemaTickets.DataModel;
 using CinemaTickets.DataModel.Models;
-using CinemaTickets.Services;
-using CinemaTickets.Services.Services;
+using CinemaTickets.Services.Contracts;
 using CinemaTickets.Web.Cache;
 using CinemaTickets.Web.Dtos;
 using CinemaTickets.Web.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace CinemaTickets.Web.Controllers
@@ -18,11 +16,12 @@ namespace CinemaTickets.Web.Controllers
         private IProjectionService _projectionService;
         private IMovieService _movieService;
         private IHallService _hallService;
-        public ProjectionController()
+        public ProjectionController(IProjectionService projectionService, IMovieService movieService,
+            IHallService hallService)
         {
-            this._projectionService = new ProjectionService();
-            this._movieService = new MovieService();
-            this._hallService = new HallService();
+            this._projectionService = projectionService;
+            this._movieService = movieService;
+            this._hallService = hallService;
         }
 
         public ActionResult Index(Movie movie)
